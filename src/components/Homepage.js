@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Search, Filter, X, ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
 
-import stockTable from './data.json';
 
 const DimossJewelryCatalog = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  let firstRender = useRef(true);
   const [filters, setFilters] = useState({
     ornamentType: '',
     purity: '',
@@ -16,45 +16,53 @@ const DimossJewelryCatalog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartCount, setCartCount] = useState(0);
-  
+
   const itemsPerPage = 8;
 
   useEffect(() => {
-    setProducts(stockTable);
-    setFilteredProducts(stockTable);
-    setLoading(false);
+    async function fetchData() {
+        const response = await fetch('https://stock.divyanshbansal.com/dimoss-website');
+        const data = await response.json();
+        setProducts(data);
+        setFilteredProducts(data);
+        setLoading(false);
+        firstRender.current = false;
+    }
+    if (firstRender.current) {
+      fetchData();
+    }
   }, []);
 
   useEffect(() => {
     let result = products;
-    
+
     // Apply search
     if (searchTerm) {
-      result = result.filter(product => 
+      result = result.filter(product =>
         product.index.toString().includes(searchTerm) ||
         product.tag.toString().includes(searchTerm) ||
         product.ornament.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (product.remark && product.remark.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
-    
+
     // Apply filters
     if (filters.ornamentType) {
-      result = result.filter(product => 
+      result = result.filter(product =>
         product.ornament.name === filters.ornamentType
       );
     }
-    
+
     if (filters.purity) {
-      result = result.filter(product => 
+      result = result.filter(product =>
         product.purity.name === filters.purity
       );
     }
-    
+
     if (filters.inStock) {
       result = result.filter(product => product.isInStock);
     }
-    
+
     setFilteredProducts(result);
     setCurrentPage(1);
   }, [searchTerm, filters, products]);
@@ -123,37 +131,37 @@ const DimossJewelryCatalog = () => {
               />
               <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
             </div>
-            
+
             <div className="flex flex-wrap gap-3">
               <select
                 className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={filters.ornamentType}
-                onChange={(e) => setFilters({...filters, ornamentType: e.target.value})}
+                onChange={(e) => setFilters({ ...filters, ornamentType: e.target.value })}
               >
                 <option value="">All Types</option>
                 {ornamentTypes.map(type => (
                   <option key={type} value={type}>{type}</option>
                 ))}
               </select>
-              
+
               <select
                 className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={filters.purity}
-                onChange={(e) => setFilters({...filters, purity: e.target.value})}
+                onChange={(e) => setFilters({ ...filters, purity: e.target.value })}
               >
                 <option value="">All Purity</option>
                 {purityTypes.map(purity => (
                   <option key={purity} value={purity}>{purity}K</option>
                 ))}
               </select>
-              
+
               <div className="flex items-center">
                 <input
                   type="checkbox"
                   id="inStock"
                   className="mr-2 h-4 w-4 text-amber-600 focus:ring-amber-500"
                   checked={filters.inStock}
-                  onChange={(e) => setFilters({...filters, inStock: e.target.checked})}
+                  onChange={(e) => setFilters({ ...filters, inStock: e.target.checked })}
                 />
                 <label htmlFor="inStock">In Stock Only</label>
               </div>
@@ -228,13 +236,13 @@ const DimossJewelryCatalog = () => {
                   >
                     <ChevronLeft size={18} />
                   </button>
-                  
+
                   {Array.from({ length: totalPages }, (_, i) => i + 1)
                     .filter(page => {
                       // Show first page, last page, current page, and pages adjacent to current page
-                      return page === 1 || 
-                             page === totalPages || 
-                             (page >= currentPage - 1 && page <= currentPage + 1);
+                      return page === 1 ||
+                        page === totalPages ||
+                        (page >= currentPage - 1 && page <= currentPage + 1);
                     })
                     .map((page, index, array) => (
                       <React.Fragment key={page}>
@@ -243,17 +251,16 @@ const DimossJewelryCatalog = () => {
                         )}
                         <button
                           onClick={() => handlePageChange(page)}
-                          className={`px-3 py-2 rounded-md ${
-                            currentPage === page
-                              ? 'bg-amber-500 text-white'
-                              : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
-                          }`}
+                          className={`px-3 py-2 rounded-md ${currentPage === page
+                            ? 'bg-amber-500 text-white'
+                            : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                            }`}
                         >
                           {page}
                         </button>
                       </React.Fragment>
                     ))}
-                  
+
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
@@ -274,14 +281,14 @@ const DimossJewelryCatalog = () => {
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto">
             <div className="p-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-medium">Product Details</h2>
-              <button 
+              <button
                 onClick={() => setSelectedProduct(null)}
                 className="text-gray-500 hover:text-gray-700"
               >
                 <X size={24} />
               </button>
             </div>
-            
+
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-gray-100 rounded-lg overflow-hidden">
                 <img
@@ -290,7 +297,7 @@ const DimossJewelryCatalog = () => {
                   className="w-full h-auto object-contain aspect-square"
                 />
               </div>
-              
+
               <div>
                 <div className="mb-6">
                   <div className="flex justify-between items-start">
@@ -301,37 +308,37 @@ const DimossJewelryCatalog = () => {
                   </div>
                   <p className="text-gray-500 mt-1">{selectedProduct.remark}</p>
                 </div>
-                
+
                 <div className="mb-6">
                   <p className="text-3xl font-bold text-amber-600">{formatPrice(selectedProduct.sellingPrice)}</p>
                   <p className="text-sm text-gray-500 mt-1">Including taxes</p>
                 </div>
-                
+
                 <div className="space-y-3 mb-6">
                   <h4 className="font-medium">Specifications:</h4>
                   <div className="grid grid-cols-2 gap-y-2 text-sm">
                     <p className="text-gray-600">Gross Weight:</p>
                     <p>{selectedProduct.grossWt}g</p>
-                    
+
                     <p className="text-gray-600">Net Weight:</p>
                     <p>{selectedProduct.netWt}g</p>
-                    
+
                     <p className="text-gray-600">Stone Weight:</p>
                     <p>{selectedProduct.stoneWt}g</p>
-                    
+
                     <p className="text-gray-600">Purity:</p>
                     <p>{selectedProduct.purity.name}K</p>
-                    
+
                     <p className="text-gray-600">Type:</p>
                     <p>{selectedProduct.stockType.name}</p>
-                    
+
                     <p className="text-gray-600">Status:</p>
                     <p className={selectedProduct.isInStock ? "text-green-600" : "text-red-600"}>
                       {selectedProduct.isInStock ? "In Stock" : "Out of Stock"}
                     </p>
                   </div>
                 </div>
-                
+
                 {selectedProduct.stoneTable && selectedProduct.stoneTable.length > 0 && (
                   <div className="mb-6">
                     <h4 className="font-medium mb-2">Stone Details:</h4>
@@ -355,16 +362,15 @@ const DimossJewelryCatalog = () => {
                     </table>
                   </div>
                 )}
-                
+
                 <div className="mt-8">
                   <button
                     onClick={handleAddToCart}
                     disabled={!selectedProduct.isInStock}
-                    className={`w-full py-3 px-4 rounded-md text-white font-medium flex items-center justify-center ${
-                      selectedProduct.isInStock 
-                        ? 'bg-amber-600 hover:bg-amber-700'
-                        : 'bg-gray-400 cursor-not-allowed'
-                    }`}
+                    className={`w-full py-3 px-4 rounded-md text-white font-medium flex items-center justify-center ${selectedProduct.isInStock
+                      ? 'bg-amber-600 hover:bg-amber-700'
+                      : 'bg-gray-400 cursor-not-allowed'
+                      }`}
                   >
                     <ShoppingBag size={20} className="mr-2" />
                     {selectedProduct.isInStock ? 'Add to Cart' : 'Out of Stock'}
@@ -383,7 +389,7 @@ const DimossJewelryCatalog = () => {
             <div className="mb-6 md:mb-0">
               <h2 className="text-2xl font-serif font-bold mb-4">Dimoss</h2>
               <p className="text-gray-400 max-w-md">
-                Discover our exquisite collection of handcrafted jewelry pieces, 
+                Discover our exquisite collection of handcrafted jewelry pieces,
                 designed to celebrate life's most precious moments.
               </p>
             </div>
