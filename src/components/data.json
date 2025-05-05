@@ -1,0 +1,375 @@
+[
+    {
+        "name": "AM BRANT",
+        "image": "/assets/images/ambrant.jpg",
+        "artists": [
+            {
+                "name": "M.F. Husain",
+                "image": "https://archermedia.blob.core.windows.net/media/0005955_m-f-husain_450.jpeg",
+                "years": "1915 - 2011",
+                "description": "Maqbool Fida Husain was an Indian painter known for executing bold, vibrantly coloured narrative paintings in a modified Cubist style. He was one of the most celebrated and internationally recognized Indian artists of the 20th century.",
+                "artworks": [
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD8pka4nzEWiRxZhM1VaaPHw_KT6_UfsZD_g&s",
+                        "alt": "M.F. Husain Artwork 1",
+                        "title": "Two Horses",
+                        "description": "A dynamic portrayal of two horses, showcasing Husain's signature bold lines and vibrant colors.",
+                        "date": "1970",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://sothebys-md.brightspotcdn.com/dims4/default/09babc0/2147483647/strip/true/crop/1501x2000+0+0/resize/1024x1364!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F9b%2F27%2Faf0430504027b2c419ff2c4db8cf%2F022l20500-bfph5.jpg",
+                        "alt": "M.F. Husain Artwork 2",
+                        "title": "Mother Teresa",
+                        "description": "An abstract representation of Mother Teresa, reflecting Husain's deep respect for her humanitarian work.",
+                        "date": "1980",
+                        "dimensions": "120 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://i.pinimg.com/474x/af/57/15/af57157dde63a994ad2873dc066a5589.jpg",
+                        "alt": "M.F. Husain Artwork 3",
+                        "title": "Horses",
+                        "description": "A recurring theme in Husain's work, this piece captures the energy and movement of horses.",
+                        "date": "1990",
+                        "dimensions": "110 x 90 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/DancingMuseFigures-MFHusainPainting_large.jpg?v=1658921597",
+                        "alt": "M.F. Husain Artwork 4",
+                        "title": "Battle of Ganga and Jamuna",
+                        "description": "Depicts the mythological battle between the rivers Ganga and Jamuna, rendered in Husain's unique style.",
+                        "date": "1995",
+                        "dimensions": "130 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/British_Raj_Procession_6fbb4258-88be-425c-92c5-c3bcd47f18ef.jpg?v=1559807431",
+                        "alt": "M.F. Husain Artwork 5",
+                        "title": "British Raj",
+                        "description": "A critical take on colonial India, showcasing Husain's political commentary through art.",
+                        "date": "2000",
+                        "dimensions": "140 x 110 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/womenand_elephant_64fd1a27-ec95-44b0-ba3e-17d908d84a6e.jpg?v=1569017894",
+                        "alt": "M.F. Husain Artwork 6",
+                        "title": "Gaja Gamini",
+                        "description": "Inspired by his film of the same name, this piece explores the concept of feminine mystique.",
+                        "date": "2001",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.eikowa.com/cdn/shop/products/mfhussaineikowa7.jpg?v=1698911408",
+                        "alt": "M.F. Husain Artwork 7",
+                        "title": "Madhuri",
+                        "description": "A tribute to actress Madhuri Dixit, capturing her grace and elegance.",
+                        "date": "2002",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD65EDP44BK5N5-re6pTGnWJTkyR1Rmdcz8w&s",
+                        "alt": "M.F. Husain Artwork 8",
+                        "title": "Saraswati",
+                        "description": "An abstract depiction of the goddess Saraswati, symbolizing knowledge and arts.",
+                        "date": "2003",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStG_WZvCqWWSmdOKtkTKN1u6OMRIcr73neww&s",
+                        "alt": "M.F. Husain Artwork 9",
+                        "title": "The Last Supper",
+                        "description": "Husain's interpretation of the iconic biblical scene, infused with Indian elements.",
+                        "date": "2004",
+                        "dimensions": "150 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGDEhB0kKD44rjWoF7-0jzDdWM79wqBHSNg&s",
+                        "alt": "M.F. Husain Artwork 10",
+                        "title": "Self Portrait",
+                        "description": "A rare self-portrait, offering insight into Husain's self-perception and artistic identity.",
+                        "date": "2005",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    }
+                ]
+            },
+            {
+                "name": "Akbar Padamsee",
+                "image": "/assets/images/akbar-padamsee.png",
+                "years": "1928 - 2020",
+                "description": "Akbar Padamsee was a pioneer of modern Indian art known for his introspective, meditative works, especially his iconic metascapes, heads, and mirror images. He experimented extensively with form, color, and composition.",
+                "artworks": [
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzLa1NookwOVopzciAbmkGdT3nidEgoXVoBA&s",
+                        "alt": "Akbar Padamsee Artwork 1",
+                        "title": "Metascape",
+                        "description": "An abstract landscape with a meditative quality, capturing Padamsee's philosophical approach to color and space.",
+                        "date": "1975",
+                        "dimensions": "91 x 122 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUX-Hjv3mczAqgOHqHYB0pLWNsIpHJx9zwA&s",
+                        "alt": "Akbar Padamsee Artwork 2",
+                        "title": "Oil on canvas",
+                        "description": "No morality, no values, no hierarchy can enter its field.",
+                        "date": "2004",
+                        "dimensions": "91.4 x 61 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScuJKQzr7O7J3uMWPpowlvanmN9DPkrGdp8g&s",
+                        "alt": "Akbar Padamsee Artwork 3",
+                        "title": "Plastic emulsion",
+                        "description": "It was an exploration of colour as quantities of black and white. It's far more exciting for me as a painter to work in grey or sepia. The brush can move freely from figure to ground, and this interaction offers me immense formal possibilities.",
+                        "date": "1959",
+                        "dimensions": "123.8 x 237.5 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWWpF2m8DUoPrcw-3DSqaBD76-8MEDHG8BAg&s",
+                        "alt": "Akbar Padamsee Artwork 1",
+                        "title": "NARAYAN SHRIDHAR BENDRE",
+                        "description": "An abstract landscape with a meditative quality, capturing Padamsee's philosophical approach to color and space.",
+                        "date": "1992",
+                        "dimensions": "91 x 122 cm",
+                        "link": "#"
+                    }
+                ]
+            },
+            {
+                "name": "F.N. Souza",
+                "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSkn-pr7IZEjDFhC7tp4qSSLCBi6kiNXvSVtYOZUoB2QaLmSd0eKe7BxTPp37pjI5-k3M2VKH3f6U5TNaLNN9YaSw",
+                "years": "1924–2002",
+                "description": "Francis Newton Souza was a trailblazing Indian artist and founding member of the Progressive Artists' Group. Known for his bold lines, provocative themes, and rebellious spirit, his works explore religion, sexuality, and human psyche through expressionist forms.",
+                "artworks": [
+                    {
+                        "src": "https://assets.astaguru.com/paintings/jul17MC-13o.jpg",
+                        "alt": "F.N. Souza Artwork 1",
+                        "title": "The Man",
+                        "description": "An iconic depiction of the human figure, showcasing Souza's raw expressionist style and defiance of artistic norms.",
+                        "date": "1955",
+                        "dimensions": "90 x 60 cm",
+                        "link": "#"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "AM BRANT 2",
+        "image": "/assets/images/ambrant2.jpg",
+        "artists": [
+            {
+                "name": "M.F. Husain",
+                "image": "https://archermedia.blob.core.windows.net/media/0005955_m-f-husain_450.jpeg",
+                "years": "1915 - 2011",
+                "description": "Maqbool Fida Husain was an Indian painter known for executing bold, vibrantly coloured narrative paintings in a modified Cubist style. He was one of the most celebrated and internationally recognized Indian artists of the 20th century.",
+                "artworks": [
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD8pka4nzEWiRxZhM1VaaPHw_KT6_UfsZD_g&s",
+                        "alt": "M.F. Husain Artwork 1",
+                        "title": "Two Horses",
+                        "description": "A dynamic portrayal of two horses, showcasing Husain's signature bold lines and vibrant colors.",
+                        "date": "1970",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://sothebys-md.brightspotcdn.com/dims4/default/09babc0/2147483647/strip/true/crop/1501x2000+0+0/resize/1024x1364!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F9b%2F27%2Faf0430504027b2c419ff2c4db8cf%2F022l20500-bfph5.jpg",
+                        "alt": "M.F. Husain Artwork 2",
+                        "title": "Mother Teresa",
+                        "description": "An abstract representation of Mother Teresa, reflecting Husain's deep respect for her humanitarian work.",
+                        "date": "1980",
+                        "dimensions": "120 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://i.pinimg.com/474x/af/57/15/af57157dde63a994ad2873dc066a5589.jpg",
+                        "alt": "M.F. Husain Artwork 3",
+                        "title": "Horses",
+                        "description": "A recurring theme in Husain's work, this piece captures the energy and movement of horses.",
+                        "date": "1990",
+                        "dimensions": "110 x 90 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/DancingMuseFigures-MFHusainPainting_large.jpg?v=1658921597",
+                        "alt": "M.F. Husain Artwork 4",
+                        "title": "Battle of Ganga and Jamuna",
+                        "description": "Depicts the mythological battle between the rivers Ganga and Jamuna, rendered in Husain's unique style.",
+                        "date": "1995",
+                        "dimensions": "130 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/British_Raj_Procession_6fbb4258-88be-425c-92c5-c3bcd47f18ef.jpg?v=1559807431",
+                        "alt": "M.F. Husain Artwork 5",
+                        "title": "British Raj",
+                        "description": "A critical take on colonial India, showcasing Husain's political commentary through art.",
+                        "date": "2000",
+                        "dimensions": "140 x 110 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/womenand_elephant_64fd1a27-ec95-44b0-ba3e-17d908d84a6e.jpg?v=1569017894",
+                        "alt": "M.F. Husain Artwork 6",
+                        "title": "Gaja Gamini",
+                        "description": "Inspired by his film of the same name, this piece explores the concept of feminine mystique.",
+                        "date": "2001",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.eikowa.com/cdn/shop/products/mfhussaineikowa7.jpg?v=1698911408",
+                        "alt": "M.F. Husain Artwork 7",
+                        "title": "Madhuri",
+                        "description": "A tribute to actress Madhuri Dixit, capturing her grace and elegance.",
+                        "date": "2002",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD65EDP44BK5N5-re6pTGnWJTkyR1Rmdcz8w&s",
+                        "alt": "M.F. Husain Artwork 8",
+                        "title": "Saraswati",
+                        "description": "An abstract depiction of the goddess Saraswati, symbolizing knowledge and arts.",
+                        "date": "2003",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStG_WZvCqWWSmdOKtkTKN1u6OMRIcr73neww&s",
+                        "alt": "M.F. Husain Artwork 9",
+                        "title": "The Last Supper",
+                        "description": "Husain's interpretation of the iconic biblical scene, infused with Indian elements.",
+                        "date": "2004",
+                        "dimensions": "150 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGDEhB0kKD44rjWoF7-0jzDdWM79wqBHSNg&s",
+                        "alt": "M.F. Husain Artwork 10",
+                        "title": "Self Portrait",
+                        "description": "A rare self-portrait, offering insight into Husain's self-perception and artistic identity.",
+                        "date": "2005",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Precious Gems",
+        "image": "https://m.media-amazon.com/images/I/51k6dnX5IDL._AC_UY1100_.jpg",
+        "artists": [
+            {
+                "name": "M.F. Husain",
+                "image": "https://archermedia.blob.core.windows.net/media/0005955_m-f-husain_450.jpeg",
+                "years": "1915 - 2011",
+                "description": "Maqbool Fida Husain was an Indian painter known for executing bold, vibrantly coloured narrative paintings in a modified Cubist style. He was one of the most celebrated and internationally recognized Indian artists of the 20th century.",
+                "artworks": [
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD8pka4nzEWiRxZhM1VaaPHw_KT6_UfsZD_g&s",
+                        "alt": "M.F. Husain Artwork 1",
+                        "title": "Two Horses",
+                        "description": "A dynamic portrayal of two horses, showcasing Husain's signature bold lines and vibrant colors.",
+                        "date": "1970",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://sothebys-md.brightspotcdn.com/dims4/default/09babc0/2147483647/strip/true/crop/1501x2000+0+0/resize/1024x1364!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F9b%2F27%2Faf0430504027b2c419ff2c4db8cf%2F022l20500-bfph5.jpg",
+                        "alt": "M.F. Husain Artwork 2",
+                        "title": "Mother Teresa",
+                        "description": "An abstract representation of Mother Teresa, reflecting Husain's deep respect for her humanitarian work.",
+                        "date": "1980",
+                        "dimensions": "120 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://i.pinimg.com/474x/af/57/15/af57157dde63a994ad2873dc066a5589.jpg",
+                        "alt": "M.F. Husain Artwork 3",
+                        "title": "Horses",
+                        "description": "A recurring theme in Husain's work, this piece captures the energy and movement of horses.",
+                        "date": "1990",
+                        "dimensions": "110 x 90 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/DancingMuseFigures-MFHusainPainting_large.jpg?v=1658921597",
+                        "alt": "M.F. Husain Artwork 4",
+                        "title": "Battle of Ganga and Jamuna",
+                        "description": "Depicts the mythological battle between the rivers Ganga and Jamuna, rendered in Husain's unique style.",
+                        "date": "1995",
+                        "dimensions": "130 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/British_Raj_Procession_6fbb4258-88be-425c-92c5-c3bcd47f18ef.jpg?v=1559807431",
+                        "alt": "M.F. Husain Artwork 5",
+                        "title": "British Raj",
+                        "description": "A critical take on colonial India, showcasing Husain's political commentary through art.",
+                        "date": "2000",
+                        "dimensions": "140 x 110 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.tallengestore.com/cdn/shop/products/womenand_elephant_64fd1a27-ec95-44b0-ba3e-17d908d84a6e.jpg?v=1569017894",
+                        "alt": "M.F. Husain Artwork 6",
+                        "title": "Gaja Gamini",
+                        "description": "Inspired by his film of the same name, this piece explores the concept of feminine mystique.",
+                        "date": "2001",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://www.eikowa.com/cdn/shop/products/mfhussaineikowa7.jpg?v=1698911408",
+                        "alt": "M.F. Husain Artwork 7",
+                        "title": "Madhuri",
+                        "description": "A tribute to actress Madhuri Dixit, capturing her grace and elegance.",
+                        "date": "2002",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD65EDP44BK5N5-re6pTGnWJTkyR1Rmdcz8w&s",
+                        "alt": "M.F. Husain Artwork 8",
+                        "title": "Saraswati",
+                        "description": "An abstract depiction of the goddess Saraswati, symbolizing knowledge and arts.",
+                        "date": "2003",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStG_WZvCqWWSmdOKtkTKN1u6OMRIcr73neww&s",
+                        "alt": "M.F. Husain Artwork 9",
+                        "title": "The Last Supper",
+                        "description": "Husain's interpretation of the iconic biblical scene, infused with Indian elements.",
+                        "date": "2004",
+                        "dimensions": "150 x 100 cm",
+                        "link": "#"
+                    },
+                    {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGDEhB0kKD44rjWoF7-0jzDdWM79wqBHSNg&s",
+                        "alt": "M.F. Husain Artwork 10",
+                        "title": "Self Portrait",
+                        "description": "A rare self-portrait, offering insight into Husain's self-perception and artistic identity.",
+                        "date": "2005",
+                        "dimensions": "100 x 100 cm",
+                        "link": "#"
+                    }
+                ]
+            }
+        ]
+    }
+]
