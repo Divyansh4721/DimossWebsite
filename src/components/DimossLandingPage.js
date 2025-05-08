@@ -1,45 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-
 const DimossLandingPage = () => {
   const [loading, setLoading] = useState(true);
   const [animationComplete, setAnimationComplete] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
-
-    // Animation completion timer
     const animationTimer = setTimeout(() => {
       setAnimationComplete(true);
     }, 3000);
-
     return () => {
       clearTimeout(timer);
       clearTimeout(animationTimer);
     };
   }, []);
-
-  // Function to navigate to catalog with filter
   const navigateToCategory = (ornamentType) => {
     navigate('/catalog', { state: { ornamentType } });
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white relative overflow-hidden">
-      {/* Background decoration elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 w-64 h-64 bg-amber-200 rounded-full opacity-20 animate-float"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300 rounded-full opacity-20 animate-float animation-delay-1000"></div>
         <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-amber-100 rounded-full opacity-30 animate-float animation-delay-2000"></div>
         <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-amber-400 rounded-full opacity-10 animate-float animation-delay-1500"></div>
       </div>
-
-      {/* Loading Screen */}
       {loading && (
         <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
           <div className="w-24 h-24 relative">
@@ -49,56 +37,40 @@ const DimossLandingPage = () => {
           <p className="mt-4 text-amber-800 font-serif">Loading Dimoss...</p>
         </div>
       )}
-
       <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
-        {/* Header */}
         <header className="w-full flex justify-between items-center mb-8">
           <div className="text-amber-800 text-sm md:text-base flex space-x-4">
             <a href="/us" className="hover:text-amber-600 transition-colors duration-300">About</a>
             <a href="https://wa.me/917404413382?text=Hi" className="hover:text-amber-600 transition-colors duration-300">Contact</a>
           </div>
-          
         </header>
-        
-        {/* Main Content */}
         <main className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto my-8 md:my-16">
-          {/* Logo Animation */}
           <div className={`transition-all duration-1000 ${animationComplete ? 'scale-100 opacity-100' : 'scale-150 opacity-0'}`}>
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center shadow-lg mb-8 overflow-hidden bg-white p-1">
-              <img 
-                src="/assets/logo.png" 
-                alt="Dimoss Jewelry Logo" 
+              <img
+                src="/assets/logo.png"
+                alt="Dimoss Jewelry Logo"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
           </div>
-          
-          {/* Brand Name Animation */}
           <h1 className={`text-5xl md:text-7xl font-serif font-bold text-amber-800 mb-6 transition-all duration-1000 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             Dimoss
           </h1>
-          
-          {/* Tagline Animation */}
           <p className={`text-xl md:text-2xl text-amber-600 mb-12 transition-all duration-1000 delay-300 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          THE SILITAIRE
+            THE SILITAIRE
           </p>
-          
-          {/* Description Animation */}
           <p className={`text-gray-600 mb-12 max-w-lg transition-all duration-1000 delay-500 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             Discover our handcrafted collection of fine rings, Bracelets and many more meticulously designed to celebrate life's most precious moments. Each piece tells a story of elegance, tradition, and timeless craftsmanship.
           </p>
-          
-          {/* CTA Button Animation */}
-          <Link 
-            to="/catalog" 
+          <Link
+            to="/catalog"
             className={`bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-medium text-lg flex items-center transition-all duration-500 transform hover:scale-105 hover:shadow-lg ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} delay-700`}
           >
             Explore Our Catalog
             <ArrowRight className="ml-2" />
           </Link>
         </main>
-        
-        {/* Featured Categories Preview */}
         <section className={`w-full max-w-5xl mx-auto mt-16 transition-all duration-1000 delay-1000 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <h2 className="text-2xl font-serif font-medium text-amber-800 text-center mb-8">Featured Collections</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -122,15 +94,15 @@ const DimossLandingPage = () => {
                 ornamentType: 'KADE'
               }
             ].map((category, index) => (
-              <div 
-                key={category.title} 
+              <div
+                key={category.title}
                 className={`relative rounded-lg overflow-hidden shadow-md group cursor-pointer transition-all duration-500 delay-${index * 200}`}
                 onClick={() => navigateToCategory(category.ornamentType)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent z-10"></div>
-                <img 
-                  src={category.imagePath} 
-                  alt={category.alt} 
+                <img
+                  src={category.imagePath}
+                  alt={category.alt}
                   className="w-full h-60 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
@@ -141,22 +113,18 @@ const DimossLandingPage = () => {
             ))}
           </div>
         </section>
-        
-        {/* Promotional Banner */}
         <section className={`w-full max-w-5xl mx-auto mt-16 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between transition-all duration-1000 delay-1200 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="mb-4 md:mb-0">
             <h3 className="text-amber-800 text-xl font-medium">New Collection Launch</h3>
             <p className="text-amber-600">Discover our latest designs inspired by nature</p>
           </div>
-          <Link 
-            to="/catalog" 
+          <Link
+            to="/catalog"
             className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300"
           >
             View Now
           </Link>
         </section>
-        
-        {/* Footer */}
         <footer className="w-full mt-16 py-8 text-center text-amber-700 text-sm">
           <p>&copy; {new Date().getFullYear()} Dimoss Jewelry. All rights reserved.</p>
           <div className="flex justify-center space-x-4 mt-4">
@@ -166,8 +134,6 @@ const DimossLandingPage = () => {
           </div>
         </footer>
       </div>
-
-      {/* CSS Animation Styles */}
       <style jsx>{`
         @keyframes float {
           0% {
@@ -200,5 +166,4 @@ const DimossLandingPage = () => {
     </div>
   );
 };
-
 export default DimossLandingPage;
