@@ -1,95 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dimoss - Exquisite Jewelry Collection">
-  <title>Dimoss Jewelry</title>
-  <script src="https://kit.fontawesome.com/9f9e58ef8b.js" crossorigin="anonymous"></script>
-  <!-- Favicon - You'll need to add actual image files to your project -->
-  <link rel="icon" href="./assets/logo.png" type="image/png">
-  <!-- Tailwind CSS -->
+  <meta name="description" content="Dimoss - Exquisite Jewelry Collection | Handcrafted Gold and Diamond Jewelry">
+  <meta name="keywords" content="jewelry, gold, diamond, rings, necklaces, earrings, bracelets, Dimoss, luxury">
+  <meta name="theme-color" content="#d14a61">
+  <title>Dimoss Jewelry | The Solitaire</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Custom Styles -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap');
-    :root {
-      --primary-color: #d97706;
-      --secondary-color: #92400e;
-      --light-color: #fffbeb;
-    }
-    body {
-      font-family: 'Raleway', sans-serif;
-      background-color: var(--light-color);
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Playfair Display', serif;
-    }
-    /* Preload animation for logo */
-    .loader {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 9999;
-      transition: opacity 0.5s ease-out;
-    }
-    .loader.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .logo-pulse {
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
-      }
-      70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 15px rgba(217, 119, 6, 0);
-      }
-      100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
-      }
-    }
-  </style>
+  <script src="https://kit.fontawesome.com/9f9e58ef8b.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="./assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
-  <!-- Preloader -->
-  <div class="loader" id="preloader">
-    <div class="flex flex-col items-center">
-      <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-amber-500 p-1 bg-white logo-pulse">
-        <img src="./assets/logo.png" alt="Dimoss Jewelry Logo" class="w-full h-full object-cover rounded-full">
-      </div>
-      <p class="mt-4 text-amber-700 font-medium">Loading Dimoss Ring Collection...</p>
-    </div>
-  </div>
-  <!-- React Root -->
   <div id="root"></div>
-  <!-- Script to remove preloader once page is loaded -->
-  <script>
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        const preloader = document.getElementById('preloader');
-        preloader.classList.add('fade-out');
-        setTimeout(function () {
-          preloader.style.display = 'none';
-        }, 500);
-      }, 1000); // Show preloader for at least 1 second
-    });
-  </script>
 </body>
+
 </html>

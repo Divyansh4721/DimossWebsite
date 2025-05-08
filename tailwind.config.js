@@ -1,4 +1,3 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,31 +9,30 @@ module.exports = {
       colors: {
         // Primary Brand (Dimoss)
         brand: {
-          50: '#fff8eb',
-          100: '#fcf3d8',
-          200: '#f8e4ad',
-          300: '#f4d17c',
-          400: '#efb94a',
-          500: '#e99e28',
-          600: '#d97e1d',
-          700: '#b3591c',
-          800: '#8f471e',
-          900: '#733c1c',
-          950: '#421f0e',
-          DEFAULT: '#e99e28',
+          50:  '#fff7f7',   // ultra–light hint
+          100: '#f7f7f7',   // light background
+          200: '#ffc0cb',   // light accent
+          300: '#ff9ab3',
+          400: '#ff759b',
+          500: '#d14a61',   // core brand
+          600: '#a8374d',
+          700: '#7a2839',
+          800: '#4d1a27',
+          900: '#200d14',
+          DEFAULT: '#d14a61',
         },
-        // Semantic Accents
+        // Semantic Accents (unchanged)
         success: {
           DEFAULT: '#4CAF50',
-          dark: '#3a8c3f',
+          dark:    '#3a8c3f',
         },
         danger: {
           DEFAULT: '#EF4444',
-          dark: '#B91C1C',
+          dark:    '#B91C1C',
         },
-        // Versatile Neutral Scale
+        // Versatile Neutral Scale (you can prune or keep as needed)
         neutral: {
-          50: '#fcf9f6',
+          50:  '#fcf9f6',
           100: '#f3f4f6',
           200: '#e5e7eb',
           300: '#d1d5db',
@@ -47,28 +45,28 @@ module.exports = {
         },
         // Contextual Tokens
         background: {
-          page: '#fcf9f6',
-          card: '#fff8eb',
+          page: '#f7f7f7',  // your f7f7f7
+          card: '#ffffff',  // white
         },
         border: {
-          DEFAULT: '#E5E7EB',
-          accent: '#F8E4AD',
+          DEFAULT: '#ffc0cb', // light accent
+          accent:  '#d14a61',
         },
         text: {
-          primary: '#1F2937',
-          secondary: '#4B5563',
-          muted: '#6B7280',
-          light: '#F3F4F6',
+          primary:   '#5e5e5e', // your #5e5e5e
+          secondary: '#5e5e5e',
+          muted:     '#5e5e5e',
+          light:     '#ffffff', // white
         },
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],
-        sans: ['Poppins', 'sans-serif'],
+        sans:  ['Poppins', 'sans-serif'],
       },
       animation: {
-        fadeIn: 'fadeIn 0.3s ease-in-out',
-        scaleIn: 'scaleIn 0.3s ease-in-out',
-        slideInRight: 'slideInRight 0.3s ease-out',
+        fadeIn:        'fadeIn 0.3s ease-in-out',
+        scaleIn:       'scaleIn 0.3s ease-in-out',
+        slideInRight:  'slideInRight 0.3s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -77,11 +75,11 @@ module.exports = {
         },
         scaleIn: {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
-          '100%': { transform: 'scale(1)', opacity: '1' },
+          '100%': { transform: 'scale(1)',    opacity: '1' },
         },
         slideInRight: {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0)' },
+          '0%':   { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)'      },
         },
       },
     },

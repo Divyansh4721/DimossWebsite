@@ -1,69 +1,249 @@
-import React from 'react'
-import { Menu } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, ShoppingBag, Search, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-function Header(isMenuOpen, setIsMenuOpen) {
-    return (
-        <header className="sticky top-0 z-40">
-            <div className="bg-gradient-to-t from-amber-200 to-amber-800 text-white shadow-lg">
-                <div className="container mx-auto px-4 py-4">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                            <button
-                                className="md:hidden mr-4 text-white"
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            >
-                                <Menu size={24} />
-                            </button>
-                            <div className="flex items-center">
-                                <img
-                                    src="/assets/logo.png"
-                                    alt="Dimoss Jewelry Logo"
-                                    className="h-12 w-12 rounded-full mr-3 shadow-md"
-                                />
-                                <div className="flex flex-col">
-                                    <h1 className="text-3xl font-serif font-bold tracking-wider">
-                                        <span className="inline-block transform hover:scale-105 transition-transform duration-300">D</span>
-                                        <span className="inline-block transform hover:scale-105 transition-transform duration-300">i</span>
-                                        <span className="inline-block transform hover:scale-105 transition-transform duration-300">m</span>
-                                        <span className="inline-block transform hover:scale-105 transition-transform duration-300">o</span>
-                                        <span className="inline-block transform hover:scale-105 transition-transform duration-300">s</span>
-                                        <span className="inline-block transform hover:scale-105 transition-transform duration-300">s</span>
-                                    </h1>
-                                    <p className="mt-1 text-amber-50 ">THE SILITAIRE</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="hidden md:flex items-center space-x-8 text-white font-medium">
-                            <Link to="/"
-                                className="relative group py-2">
-                                Home
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                            </Link>
-                            <a href="#" className="relative group py-2">
-                                New Arrivals
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                            </a>
-                            <Link to="/us"
-                                className="relative group py-2">
-                                About Us
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+
+function Header({ isMenuOpen, setIsMenuOpen }) {
+  // State to control shimmer animation
+  const [isShimmering, setIsShimmering] = useState(false);
+
+  // State for letter-by-letter animations
+  const [hoverLetter, setHoverLetter] = useState(null);
+
+  // Trigger shimmer animation periodically
+  useEffect(() => {
+    const shimmerInterval = setInterval(() => {
+      setIsShimmering(true);
+      setTimeout(() => setIsShimmering(false), 1500);
+    }, 7000);
+
+    return () => clearInterval(shimmerInterval);
+  }, []);
+
+  // Add animations to head
+  useEffect(() => {
+    if (typeof document !== 'undefined' && !document.getElementById('header-animations')) {
+      const styleSheet = document.createElement('style');
+      styleSheet.id = 'header-animations';
+      styleSheet.innerHTML = `
+        @keyframes shimmer {
+          0% {
+            background-position: -100% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+        
+        @keyframes float-subtle {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-3px); }
+        }
+        
+        @keyframes sparkle {
+          0%, 100% { transform: scale(1); opacity: 0.5; }
+          50% { transform: scale(1.3); opacity: 1; }
+        }
+        
+        @keyframes glow {
+          0%, 100% { text-shadow: 0 0 2px rgba(209, 74, 97, 0.3); }
+          50% { text-shadow: 0 0 10px rgba(209, 74, 97, 0.6), 0 0 20px rgba(209, 74, 97, 0.3); }
+        }
+        
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-5px) scale(1.1); }
+        }
+        
+        @keyframes wave {
+          0% { transform: translateY(0); }
+          25% { transform: translateY(-5px); }
+          50% { transform: translateY(0); }
+          75% { transform: translateY(5px); }
+          100% { transform: translateY(0); }
+        }
+        
+        .shimmer-effect {
+          background: linear-gradient(
+            90deg, 
+            rgba(255,255,255,0) 0%, 
+            rgba(255,255,255,0.8) 50%, 
+            rgba(255,255,255,0) 100%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.5s ease-in-out;
+        }
+        
+        .logo-float {
+          animation: float-subtle 3s ease-in-out infinite;
+        }
+        
+        .letter-bounce {
+          animation: bounce 0.5s ease-in-out;
+        }
+        
+        .sparkle {
+          position: absolute;
+          pointer-events: none;
+          background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+          border-radius: 50%;
+          animation: sparkle 1s ease-in-out infinite;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    }
+  }, []);
+
+  // Logo sparkle function
+  const addSparkle = (e) => {
+    const logo = e.currentTarget;
+    const logoRect = logo.getBoundingClientRect();
+    
+    // Create sparkle elements
+    for (let i = 0; i < 5; i++) {
+      const size = Math.random() * 6 + 3;
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.width = `${size}px`;
+      sparkle.style.height = `${size}px`;
+      sparkle.style.left = `${Math.random() * logoRect.width}px`;
+      sparkle.style.top = `${Math.random() * logoRect.height}px`;
+      sparkle.style.opacity = Math.random() * 0.5 + 0.3;
+      
+      // Add to logo element
+      logo.appendChild(sparkle);
+      
+      // Remove after animation
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
+    }
+  };
+
+  return (
+    <header className="sticky top-0 z-40">
+      <div className="bg-white text-brand-800 border-b border-brand-200 shadow-sm">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex justify-between items-center">
+            {/* Left section with menu and logo */}
+            <div className="flex items-center space-x-6">
+              <button
+                className="md:hidden text-brand-800 hover:text-brand-500 transition-colors"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <Menu size={22} />
+              </button>
+              
+              <div className="flex items-center">
+                <Link to="/" className="flex items-center group relative">
+                  {/* Animated logo */}
+                  <div 
+                    className="relative h-10 w-10 rounded-full overflow-hidden mr-3 shadow-md transition-all duration-500 group-hover:shadow-brand-200 logo-float"
+                    onMouseEnter={addSparkle}
+                  >
+                    <img
+                      src="/assets/logo.png"
+                      alt="Dimoss Jewelry Logo"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    {/* Animated brand name - letter by letter */}
+                    <h1 className="text-2xl font-serif font-bold tracking-wider text-brand-800 relative">
+                      <span 
+                        className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 0 ? 'letter-bounce' : ''}`}
+                        onMouseEnter={() => setHoverLetter(0)}
+                        onMouseLeave={() => setHoverLetter(null)}
+                        style={{ transformOrigin: 'bottom center' }}
+                      >D</span>
+                      <span 
+                        className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 1 ? 'letter-bounce' : ''}`}
+                        onMouseEnter={() => setHoverLetter(1)}
+                        onMouseLeave={() => setHoverLetter(null)}
+                        style={{ transformOrigin: 'bottom center' }}
+                      >i</span>
+                      <span 
+                        className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 2 ? 'letter-bounce' : ''}`}
+                        onMouseEnter={() => setHoverLetter(2)}
+                        onMouseLeave={() => setHoverLetter(null)}
+                        style={{ transformOrigin: 'bottom center' }}
+                      >m</span>
+                      <span 
+                        className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 3 ? 'letter-bounce' : ''}`}
+                        onMouseEnter={() => setHoverLetter(3)}
+                        onMouseLeave={() => setHoverLetter(null)}
+                        style={{ transformOrigin: 'bottom center' }}
+                      >o</span>
+                      <span 
+                        className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 4 ? 'letter-bounce' : ''}`}
+                        onMouseEnter={() => setHoverLetter(4)}
+                        onMouseLeave={() => setHoverLetter(null)}
+                        style={{ transformOrigin: 'bottom center' }}
+                      >s</span>
+                      <span 
+                        className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 5 ? 'letter-bounce' : ''}`}
+                        onMouseEnter={() => setHoverLetter(5)}
+                        onMouseLeave={() => setHoverLetter(null)}
+                        style={{ transformOrigin: 'bottom center' }}
+                      >s</span>
+                    </h1>
+
+                    {/* Animated tagline */}
+                    <p className="text-xs tracking-wider text-brand-500 relative overflow-hidden">
+                      <span className="inline-block relative">
+                        THE SOLITAIRE
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></span>
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
             </div>
-            <div className={`md:hidden bg-amber-800 text-white overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-64' : 'max-h-0'}`}>
-                <div className="container mx-auto px-4 py-2">
-                    <nav className="flex flex-col">
-                        <Link to="/"
-                            className="py-2 border-b border-amber-700 hover:bg-amber-700 transition-colors">Home</Link>
-                        <a href="#" className="py-2 border-b border-amber-700 hover:bg-amber-700 transition-colors">Collections</a>
-                        <a href="#" className="py-2 border-b border-amber-700 hover:bg-amber-700 transition-colors">New Arrivals</a>
-                        <Link to="/us" className="py-2 hover:bg-amber-700 transition-colors">About Us</Link>
-                    </nav>
-                </div>
-            </div>
-        </header>
-    )
+            
+            {/* Center navigation - desktop only */}
+            <nav className="hidden md:flex items-center justify-center space-x-8 text-brand-700 font-medium text-sm">
+              <Link to="/" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+                HOME
+              </Link>
+              <Link to="/collections" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+                COLLECTIONS
+              </Link>
+              <Link to="/new" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+                NEW ARRIVALS
+              </Link>
+              <Link to="/us" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+                ABOUT US
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </div>
+      
+      {/* Mobile menu */}
+      <div 
+        className={`md:hidden bg-white text-brand-800 border-b border-brand-200 overflow-hidden transition-all duration-300 ${
+          isMenuOpen ? 'max-h-64' : 'max-h-0'
+        }`}
+      >
+        <nav className="container mx-auto px-4 py-2 flex flex-col">
+          <Link to="/" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+            HOME
+          </Link>
+          <Link to="/collections" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+            COLLECTIONS
+          </Link>
+          <Link to="/new" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+            NEW ARRIVALS
+          </Link>
+          <Link to="/us" className="py-3 text-sm font-medium hover:text-brand-500 transition-colors">
+            ABOUT US
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
 }
-export default Header
+
+export default Header;
