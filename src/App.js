@@ -16,16 +16,16 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <>
-      {loading && <Preloader />}
-      <Routes>
-        <Route path="/" element={<DimossLandingPage />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/us" element={<AboutUs />} />
-        <Route path="/na" element={<DimossJewelleryNewArrivals />} />
-        <Route path="/collections" element={<DimossJewelleryCollections />} />
-      </Routes>
-    </>
+      <Router>
+        {loading && <Preloader />}
+        <Routes>
+          <Route path="/" element={<DimossLandingPage />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/us" element={<AboutUs />} />
+          <Route path="/na" element={<DimossJewelleryNewArrivals />} />
+          <Route path="/collections" element={<DimossJewelleryCollections />} />
+        </Routes>
+      </Router>
   );
 }
 export default App;
