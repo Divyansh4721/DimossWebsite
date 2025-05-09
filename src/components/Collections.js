@@ -124,9 +124,6 @@ const DimossJewelleryCollections = () => {
             setCategories(updatedCategories);
         }
     }, [products]);
-    const handleCategoryClick = (categoryCode) => {
-        navigate(`/catalog?category=${categoryCode}`);
-    };
     const handleImageError = (categoryId) => {
         setCategories(prevCategories =>
             prevCategories.map(cat =>
@@ -154,9 +151,9 @@ const DimossJewelleryCollections = () => {
                 ) : (
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                         {categories.map((category) => (
-                            <div
+                            <a
                                 key={category.id}
-                                onClick={() => handleCategoryClick(category.code)}
+                                href={`/catalog?category=${category.code}`}
                                 className="group cursor-pointer"
                             >
                                 <div className="overflow-hidden rounded-lg bg-white shadow-md border border-brand-100 hover:shadow-lg transition-all duration-300 h-full">
@@ -192,7 +189,7 @@ const DimossJewelleryCollections = () => {
                                         <div className="w-12 h-0.5 bg-brand-500 mx-auto mt-2"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         ))}
                     </div>
                 )}

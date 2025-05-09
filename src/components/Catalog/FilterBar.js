@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Search, Filter, X, ChevronLeft, ChevronRight, ArrowUpDown, Check } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
-const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
-    const routerLocation = useLocation();
+import { useLocation, useNavigate } from 'react-router-dom';
+const FilterBar = ({ products, onProductSelect, dataLoaded }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filters, setFilters] = useState({
@@ -14,24 +15,47 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [showMobileFilters, setShowMobileFilters] = useState(false);
+    const isInitialMount = useRef(true);
+    const paramsApplied = useRef(false);
     const itemsPerPage = 16;
     useEffect(() => {
-        const searchParams = new URLSearchParams(routerLocation.search);
-        const categoryFromUrl = searchParams.get('category');
-        if (categoryFromUrl) {
-            setFilters(prev => ({
-                ...prev,
-                ornamentType: categoryFromUrl
-            }));
+        if (dataLoaded && !paramsApplied.current) {
+            const searchParams = new URLSearchParams(location.search);
+            const categoryFromUrl = searchParams.get('category');
+            const purityFromUrl = searchParams.get('purity');
+            const inStockFromUrl = searchParams.get('inStock');
+            const sortFromUrl = searchParams.get('sort');
+            const searchFromUrl = searchParams.get('search');
+            const pageFromUrl = searchParams.get('page');
+            setFilters({
+                ornamentType: categoryFromUrl || '',
+                purity: purityFromUrl || '',
+                inStock: inStockFromUrl === 'false' ? false : true
+            });
+            if (sortFromUrl) setSortOption(sortFromUrl);
+            if (searchFromUrl) setSearchTerm(searchFromUrl);
+            if (pageFromUrl) setCurrentPage(parseInt(pageFromUrl, 10));
+            paramsApplied.current = true;
+            isInitialMount.current = false;
         }
-        else if (propLocation && propLocation.state && propLocation.state.ornamentType) {
-            setFilters(prev => ({
-                ...prev,
-                ornamentType: propLocation.state.ornamentType
-            }));
-            window.history.replaceState({}, document.title);
+    }, [location.search, dataLoaded]);
+    useEffect(() => {
+        if (dataLoaded && !isInitialMount.current) {
+            const searchParams = new URLSearchParams();
+            if (filters.ornamentType) searchParams.set('category', filters.ornamentType);
+            if (filters.purity) searchParams.set('purity', filters.purity);
+            if (!filters.inStock) searchParams.set('inStock', 'false');
+            if (sortOption) searchParams.set('sort', sortOption);
+            if (searchTerm) searchParams.set('search', searchTerm);
+            if (currentPage > 1) searchParams.set('page', currentPage.toString());
+            const currentParams = new URLSearchParams(location.search);
+            const productId = currentParams.get('product');
+            if (productId) {
+                searchParams.set('product', productId);
+            }
+            navigate(`/catalog?${searchParams.toString()}`, { replace: true });
         }
-    }, [routerLocation.search, propLocation]);
+    }, [filters, sortOption, searchTerm, currentPage, navigate, location.search, dataLoaded]);
     useEffect(() => {
         if (products.length > 0) {
             products = [...products].sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
@@ -72,7 +96,9 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
             result = [...result].sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
         }
         setFilteredProducts(result);
-        setCurrentPage(1);
+        if (!isInitialMount.current) {
+            setCurrentPage(1);
+        }
     }, [searchTerm, filters, products, sortOption]);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -99,6 +125,9 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
         });
         setSortOption('');
         setSearchTerm('');
+    };
+    const handleProductSelect = (product) => {
+        onProductSelect(product);
     };
     const ornamentTypes = [...new Set(products.map(p => p.ornament && p.ornament.name).filter(Boolean))];
     const purityTypes = [...new Set(products.map(p => p.purity && p.purity.name).filter(Boolean))];
@@ -262,7 +291,7 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                         <div
                                             key={product._id}
                                             className="bg-white rounded-lg overflow-hidden shadow-sm border border-brand-100 transition-all duration-300 hover:shadow-md hover:border-brand-300 cursor-pointer"
-                                            onClick={() => onProductSelect(product)}
+                                            onClick={() => handleProductSelect(product)}
                                         >
                                             <div className="relative pt-[100%] bg-neutral-100 overflow-hidden">
                                                 <img

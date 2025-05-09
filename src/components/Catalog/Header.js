@@ -186,10 +186,10 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
               <Link to="/catalog" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
                 CATALOG
               </Link>
-              <Link to="/na" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+              <Link to="/new-arrival" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
                 NEW ARRIVALS
               </Link>
-              <Link to="/us" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+              <Link to="/about" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
                 ABOUT US
               </Link>
             </nav>
@@ -210,10 +210,10 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
           <Link to="/catalog" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
             Catalog
           </Link>
-          <Link to="/na" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+          <Link to="/new-arrival" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
             NEW ARRIVALS
           </Link>
-          <Link to="/us" className="py-3 text-sm font-medium hover:text-brand-500 transition-colors">
+          <Link to="/about" className="py-3 text-sm font-medium hover:text-brand-500 transition-colors">
             ABOUT US
           </Link>
         </nav>

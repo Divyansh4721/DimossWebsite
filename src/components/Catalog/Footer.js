@@ -63,12 +63,12 @@ function Footer() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/na" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
+                                    <Link to="/new-arrival" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
                                         <span className="mr-2 text-brand-400">→</span> New Arrivals
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/us" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
+                                    <Link to="/about" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
                                         <span className="mr-2 text-brand-400">→</span> About Us
                                     </Link>
                                 </li>

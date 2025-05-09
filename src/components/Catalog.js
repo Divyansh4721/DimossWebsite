@@ -1,32 +1,71 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Calendar, Info, BookOpen, Target } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from './Catalog/Header';
 import FilterBar from './Catalog/FilterBar';
 import Footer from './Catalog/Footer';
 import WhatsappBubble from './Catalog/WhatsappBubble';
 const DimossJewelleryCatalog = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
-    let firstRender = useRef(true);
+    const firstRender = useRef(true);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const getCategoryDisplayName = (code) => {
+        switch (code) {
+            case 'BCLT': return 'Bracelet';
+            case 'B.Earrings': return "Earrings";
+            case 'GR': return "Men's Ring";
+            case 'KADE': return "Kangan";
+            case 'LR': return "Women's Ring";
+            case 'NP': return 'Nose Pin';
+            case 'PDL': return 'Pendant';
+            case 'TOPS': return 'Tops';
+            case 'SET': return 'Set';
+            case 'CH': return 'Chain';
+            default: return code;
+        }
+    };
     useEffect(() => {
         async function fetchData() {
             try {
+                setLoading(true);
                 const response = await fetch('https://stock.divyanshbansal.com/dimoss-website');
                 const data = await response.json();
                 setProducts(data);
-                firstRender.current = false;
+                setLoading(false);
+                setDataLoaded(true);
             } catch (error) {
                 console.error('Error fetching products:', error);
+                setLoading(false);
             }
         }
         if (firstRender.current) {
             fetchData();
+            firstRender.current = false;
         }
     }, []);
+    useEffect(() => {
+        if (dataLoaded && products.length > 0) {
+            const searchParams = new URLSearchParams(location.search);
+            const productId = searchParams.get('product');
+            if (productId) {
+                const product = products.find(p => p.index.toString() === productId);
+                if (product) {
+                    setSelectedProduct(product);
+                } else {
+                    searchParams.delete('product');
+                    navigate(`/catalog?${searchParams.toString()}`, { replace: true });
+                }
+            } else if (selectedProduct) {
+                setSelectedProduct(null);
+            }
+        }
+    }, [location.search, products, navigate, dataLoaded]);
     useEffect(() => {
         if (selectedProduct) {
             setSelectedImageIndex(0);
@@ -53,19 +92,35 @@ Type: ${product.ornament.name}
 Purity: ${product.purity.name}K
 Price: ${product.sellingPrice}
 Please provide more information.
-https://dimoss.in/products/${product.index}`;
+https://dimoss.in/catalog?product=${product.index}`;
         return encodeURIComponent(message);
+    };
+    const handleProductSelect = (product) => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set('product', product.index);
+        navigate(`/catalog?${searchParams.toString()}`, { replace: true });
+    };
+    const handleCloseProductModal = () => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.delete('product');
+        navigate(`/catalog?${searchParams.toString()}`, { replace: true });
     };
     return (
         <div className="min-h-screen bg-background-page flex flex-col">
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-            <div className="flex-grow">
-                <FilterBar
-                    location={location}
-                    products={products}
-                    onProductSelect={setSelectedProduct}
-                />
-            </div>
+            {loading ? (
+                <div className="flex justify-center items-center py-16">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
+                </div>
+            ) : (
+                <div className="flex-grow">
+                    <FilterBar
+                        products={products}
+                        onProductSelect={handleProductSelect}
+                        dataLoaded={dataLoaded}
+                    />
+                </div>
+            )}
             {selectedProduct && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 animate-fadeIn backdrop-blur-sm">
                     <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-auto shadow-xl transform animate-scaleIn">
@@ -73,12 +128,11 @@ https://dimoss.in/products/${product.index}`;
                             <div className="flex items-center">
                                 <div className="w-1 h-8 bg-brand-500 rounded-full mr-3"></div>
                                 <div>
-                                    <h2 className="text-xl font-serif font-medium text-brand-800">{selectedProduct.ornament.name}</h2>
-                                    <p className="text-brand-500 text-sm">Exclusive Collection</p>
+                                    <h2 className="text-xl font-serif font-medium text-brand-800">{getCategoryDisplayName(selectedProduct.ornament.name)}</h2>
                                 </div>
                             </div>
                             <button
-                                onClick={() => setSelectedProduct(null)}
+                                onClick={handleCloseProductModal}
                                 className="p-2 rounded-full hover:bg-brand-50 text-brand-700 transition-colors"
                                 aria-label="Close"
                             >
@@ -99,9 +153,7 @@ https://dimoss.in/products/${product.index}`;
                                                 Out of Stock
                                             </div>
                                         ) : (
-                                            <div className="absolute top-4 left-4 bg-success text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                                                In Stock
-                                            </div>
+                                            <div></div>
                                         )}
                                     </div>
                                 </div>
@@ -208,8 +260,8 @@ https://dimoss.in/products/${product.index}`;
                                         <Target className="h-6 w-6 text-brand-500" />
                                     </div>
                                     <div>
-                                        <h5 className="font-medium text-brand-800">Need Assistance?</h5>
-                                        <p className="text-sm text-brand-600">Our jewellery experts are available to help</p>
+                                        <h5 className="font-medium text-brand-800">Ready to Purchase?</h5>
+                                        <p className="text-sm text-brand-600">This item is in stock and ready to ship</p>
                                     </div>
                                     <div className="flex gap-3 mt-3 sm:mt-0 sm:ml-auto">
                                         <a

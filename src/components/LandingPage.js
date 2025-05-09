@@ -207,12 +207,6 @@ const DimossLandingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-50 to-white relative overflow-hidden">
       <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
-        <header className="w-full flex justify-between items-center mb-8">
-          <div className="text-brand-700 text-sm md:text-base flex space-x-6">
-            <a href="/us" className="hover:text-brand-500 transition-colors duration-300">About</a>
-            <a href="https://wa.me/917027701770?text=Hi" className="hover:text-brand-500 transition-colors duration-300">Contact</a>
-          </div>
-        </header>
         <main className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto my-8 md:my-16">
           <div className={`transition-all duration-1000 ${animationComplete ? 'scale-100 opacity-100' : 'scale-150 opacity-0'}`}>
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center shadow-lg mb-8 overflow-hidden bg-white p-1 relative animate-shimmer">
@@ -317,7 +311,7 @@ const DimossLandingPage = () => {
             <p className="text-brand-600">Discover our latest designs inspired by nature</p>
           </div>
           <Link
-            to="/na"
+            to="/new-arrival"
             className="bg-brand-500 hover:bg-brand-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 flex items-center"
           >
             View Now
