@@ -34,6 +34,7 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     }, [routerLocation.search, propLocation]);
     useEffect(() => {
         if (products.length > 0) {
+            products = [...products].sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
             setLoading(false);
             setFilteredProducts(products);
         }
@@ -67,6 +68,8 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
             } else if (sortOption === 'price-desc') {
                 result = [...result].sort((a, b) => b.sellingPrice - a.sellingPrice);
             }
+        } else {
+            result = [...result].sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
         }
         setFilteredProducts(result);
         setCurrentPage(1);
@@ -101,9 +104,9 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     const purityTypes = [...new Set(products.map(p => p.purity && p.purity.name).filter(Boolean))];
     const getCategoryDisplayName = (code) => {
         switch (code) {
-            case 'B.BALI': return "Earrings";
             case 'BCLT': return 'Bracelet';
-            case 'GR': return "Man's Ring";
+            case 'B.BALI': return "Earrings";
+            case 'GR': return "Men's Ring";
             case 'KADE': return "Kangan";
             case 'LR': return "Women's Ring";
             case 'NP': return 'Nose Pin';
@@ -117,7 +120,7 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     const activeFiltersCount = (
         (filters.ornamentType ? 1 : 0) +
         (filters.purity ? 1 : 0) +
-        (filters.inStock ? 1 : 0) +
+        (filters.inStock ? 0 : 1) +
         (sortOption ? 1 : 0)
     );
     return (

@@ -61,7 +61,7 @@ const DimossJewelleryCollections = () => {
         },
         {
             id: 'mans-ring',
-            name: "Man's Ring",
+            name: "Men's Ring",
             code: 'GR',
             image: null,
             customImage: '/assets/categories/Mansring.png' // Replace with your actual path

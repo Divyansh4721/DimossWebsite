@@ -261,8 +261,8 @@ const DimossLandingPage = () => {
               height: '200%',
               background: 'radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)',
               opacity: isButtonHovered ? 0.15 : 0,
-              transform: 'rotate(45deg)',
-              transition: 'opacity 0.5s ease'
+              transform: 'rotate(60deg)',
+              transition: 'opacity 1s ease'
             }}></div>
             <div style={{ display: 'flex', alignItems: 'center', position: 'relative', zIndex: 2 }}>
               Explore Our Collections

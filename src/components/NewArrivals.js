@@ -16,9 +16,9 @@ const DimossJewelleryNewArrivals = () => {
     const [isLoading, setIsLoading] = useState(true);
     const getCategoryDisplayName = (code) => {
         switch (code) {
-            case 'B.Earrings': return "Earrings";
             case 'BCLT': return 'Bracelet';
-            case 'GR': return "Man's Ring";
+            case 'B.Earrings': return "Earrings";
+            case 'GR': return "Men's Ring";
             case 'KADE': return "Kangan";
             case 'LR': return "Women's Ring";
             case 'NP': return 'Nose Pin';
