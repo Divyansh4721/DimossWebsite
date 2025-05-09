@@ -1,12 +1,10 @@
 import React from 'react';
 import { Facebook, Instagram, MapPin, Mail, Phone, Copyright, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 function Footer() {
     return (
         <footer className="bg-white border-t border-brand-100 mt-16">
             <div className="container mx-auto px-4">
-
                 <div className="flex flex-col md:flex-row justify-between border-t border-brand-100 pt-10">
                     {/* Brand column */}
                     <div className="mb-8 md:mb-0 md:w-1/3 pr-8">
@@ -26,18 +24,18 @@ function Footer() {
                             designed to celebrate life's most precious moments with elegance and timeless beauty.
                         </p>
                         <div className="flex space-x-3">
-                            <a 
-                                href="https://www.facebook.com/profile.php?id=100095082944854" 
-                                target="_blank" 
+                            <a
+                                href="https://www.facebook.com/profile.php?id=100095082944854"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="bg-brand-50 hover:bg-brand-100 text-brand-700 hover:text-brand-500 p-2 rounded-full transition-colors duration-300"
                                 aria-label="Facebook"
                             >
                                 <Facebook className="w-5 h-5" />
                             </a>
-                            <a 
-                                href="https://www.instagram.com/dimoss.in/" 
-                                target="_blank" 
+                            <a
+                                href="https://www.instagram.com/dimoss.in/"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="bg-brand-50 hover:bg-brand-100 text-brand-700 hover:text-brand-500 p-2 rounded-full transition-colors duration-300"
                                 aria-label="Instagram"
@@ -46,7 +44,6 @@ function Footer() {
                             </a>
                         </div>
                     </div>
-
                     {/* Links and Contact */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 md:w-2/3">
                         {/* Quick Links */}
@@ -80,17 +77,16 @@ function Footer() {
                                 </li>
                             </ul>
                         </div>
-
                         {/* Contact */}
                         <div>
                             <h3 className="text-brand-800 font-medium mb-4 pb-1 border-b border-brand-100">Contact Us</h3>
                             <address className="not-italic space-y-3">
                                 <p className="flex items-start text-brand-600">
                                     <MapPin className="w-5 h-5 mr-2 text-brand-500 flex-shrink-0 mt-0.5" />
-                                    <a 
-                                        href="https://maps.app.goo.gl/1J4bruFtyfUtYhLL6" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
+                                    <a
+                                        href="https://maps.app.goo.gl/1J4bruFtyfUtYhLL6"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="hover:text-brand-500 transition-colors duration-300"
                                     >
                                         Sarafa Bazar, Karnal, Haryana
@@ -98,8 +94,8 @@ function Footer() {
                                 </p>
                                 <p className="flex items-center text-brand-600">
                                     <Mail className="w-5 h-5 mr-2 text-brand-500" />
-                                    <a 
-                                        href="mailto:avdeshb@hotmail.com" 
+                                    <a
+                                        href="mailto:avdeshb@hotmail.com"
                                         className="hover:text-brand-500 transition-colors duration-300"
                                     >
                                         avdeshb@hotmail.com
@@ -107,8 +103,8 @@ function Footer() {
                                 </p>
                                 <p className="flex items-center text-brand-600">
                                     <Phone className="w-5 h-5 mr-2 text-brand-500" />
-                                    <a 
-                                        href="tel:+917027701770" 
+                                    <a
+                                        href="tel:+917027701770"
                                         className="hover:text-brand-500 transition-colors duration-300"
                                     >
                                         +91 702 770 1770
@@ -118,7 +114,6 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-
                 {/* Copyright bar */}
                 <div className="border-t border-brand-100 mt-10 py-6 flex flex-col sm:flex-row justify-between items-center text-brand-600 text-sm">
                     <p className="flex items-center mb-2 sm:mb-0">
@@ -132,5 +127,4 @@ function Footer() {
         </footer>
     );
 }
-
 export default Footer;

@@ -2,26 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, ShoppingBag, Heart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import WhatsappBubble from './Catalog/WhatsappBubble';
-
-
 const DimossLandingPage = () => {
   // Remove loading state as it's managed by EnhancedPreloader
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const navigate = useNavigate();
-
   // Handle animations, but no loading (using external preloader)
   useEffect(() => {
     // Only handle animation completion, as loading is managed by EnhancedPreloader
     const animationTimer = setTimeout(() => {
       setAnimationComplete(true);
     }, 3000);
-
     return () => {
       clearTimeout(animationTimer);
     };
   }, []);
-
   // Add custom animations to document head
   useEffect(() => {
     if (typeof document !== 'undefined' && !document.getElementById('landing-animations')) {
@@ -210,16 +205,11 @@ const DimossLandingPage = () => {
       document.head.appendChild(styleSheet);
     }
   }, []);
-
   const navigateToCategory = (ornamentType) => {
     navigate('/catalog', { state: { ornamentType } });
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-50 to-white relative overflow-hidden">
-
-
-
       <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
         {/* Header navigation */}
         <header className="w-full flex justify-between items-center mb-8">
@@ -228,7 +218,6 @@ const DimossLandingPage = () => {
             <a href="https://wa.me/917404413382?text=Hi" className="hover:text-brand-500 transition-colors duration-300">Contact</a>
           </div>
         </header>
-
         {/* Main hero section */}
         <main className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto my-8 md:my-16">
           {/* Logo with animation */}
@@ -236,7 +225,6 @@ const DimossLandingPage = () => {
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center shadow-lg mb-8 overflow-hidden bg-white p-1 relative animate-shimmer">
               {/* Decorative rings around the logo */}
               <div className="absolute inset-2 rounded-full border border-dashed border-brand-200 rotate-slow opacity-70"></div>
-
               <img
                 src="/assets/logo.png"
                 alt="Dimoss Jewellery Logo"
@@ -244,20 +232,15 @@ const DimossLandingPage = () => {
               />
             </div>
           </div>
-
-
-
           {/* Brand tagline */}
           <p className={`text-xl md:text-2xl text-brand-500 mb-12 transition-all duration-1000 delay-300 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             THE SOLITAIRE
           </p>
-
           {/* Description */}
           <p className={`text-brand-600 mb-12 max-w-lg transition-all duration-1000 delay-500 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             Discover the Art of Timeless Elegance <br />
             Dimoss brings you exquisite gold and diamond jewellery, <br />
             thoughtfully crafted to celebrate your most cherished moments with unmatched sophistication and style.</p>
-
           {/* Enhanced CTA button with animations - fixed to ensure visibility */}
           <Link
             to="/collections"
@@ -289,11 +272,9 @@ const DimossLandingPage = () => {
             </div>
           </Link>
         </main>
-
         {/* Featured collections section */}
         <section className={`w-full max-w-5xl mx-auto mt-16 transition-all duration-1000 delay-1000 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <h2 className="text-2xl font-serif font-medium text-brand-800 text-center mb-8">Featured Collections</h2>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
@@ -325,14 +306,12 @@ const DimossLandingPage = () => {
               >
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-800/70 to-transparent z-10"></div>
-
                 {/* Category image */}
                 <img
                   src={category.imagePath}
                   alt={category.alt}
                   className="w-full h-60 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-
                 {/* Category info */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
                   <h3 className="text-white text-xl font-medium">{category.title}</h3>
@@ -340,7 +319,6 @@ const DimossLandingPage = () => {
                     {category.description}
                   </p>
                 </div>
-
                 {/* Hover indicator */}
                 <div className="absolute top-3 right-3 bg-white/80 text-brand-500 rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 transform rotate-45 group-hover:rotate-0">
                   <ArrowRight size={16} />
@@ -349,7 +327,6 @@ const DimossLandingPage = () => {
             ))}
           </div>
         </section>
-
         {/* Promo section */}
         <section className={`w-full max-w-5xl mx-auto mt-16 bg-gradient-to-r from-brand-50 to-brand-100 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between transition-all duration-1000 delay-1200 ${animationComplete ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'} shadow-sm border border-brand-200`}>
           <div className="mb-4 md:mb-0">
@@ -364,19 +341,14 @@ const DimossLandingPage = () => {
             <ArrowRight size={16} className="ml-1" />
           </Link>
         </section>
-
-
-
         {/* Footer */}
         <footer className="w-full mt-16 py-8 text-center text-brand-600 text-sm border-t border-brand-100">
           <p>&copy; {new Date().getFullYear()} Dimoss Jewellery. All rights reserved.</p>
         </footer>
       </div>
-
       {/* Floating WhatsApp */}
       <WhatsappBubble />
     </div>
   );
 };
-
 export default DimossLandingPage;

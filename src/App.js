@@ -7,18 +7,14 @@ import Preloader from './Preloader';
 import DimossJewelleryNewArrivals from './components/NewArrivals';
 import DimossJewelleryCollections from './components/Collections';
 import './App.css';
-
 function App() {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 15000);
-
     return () => clearTimeout(timer);
   }, []);
-
   return (
     <>
       {loading && <Preloader />}
@@ -32,5 +28,4 @@ function App() {
     </>
   );
 }
-
 export default App;

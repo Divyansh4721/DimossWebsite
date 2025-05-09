@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, X, ChevronLeft, ChevronRight, ArrowUpDown, Check } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-
 const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     const routerLocation = useLocation();
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -15,21 +14,16 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [showMobileFilters, setShowMobileFilters] = useState(false);
-    const itemsPerPage = 20;
-
-    // Get category code from URL query parameters
+    const itemsPerPage = 16;
     useEffect(() => {
-        // Check URL query parameters first
         const searchParams = new URLSearchParams(routerLocation.search);
         const categoryFromUrl = searchParams.get('category');
-        
         if (categoryFromUrl) {
             setFilters(prev => ({
                 ...prev,
                 ornamentType: categoryFromUrl
             }));
         }
-        // Then check location state as fallback (for backward compatibility)
         else if (propLocation && propLocation.state && propLocation.state.ornamentType) {
             setFilters(prev => ({
                 ...prev,
@@ -38,14 +32,12 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
             window.history.replaceState({}, document.title);
         }
     }, [routerLocation.search, propLocation]);
-
     useEffect(() => {
         if (products.length > 0) {
             setLoading(false);
             setFilteredProducts(products);
         }
     }, [products]);
-
     useEffect(() => {
         let result = products;
         if (searchTerm) {
@@ -79,19 +71,16 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
         setFilteredProducts(result);
         setCurrentPage(1);
     }, [searchTerm, filters, products, sortOption]);
-
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) {
             setCurrentPage(newPage);
             document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
         }
     };
-
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-IN', {
             style: 'currency',
@@ -99,7 +88,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
             maximumFractionDigits: 0
         }).format(price);
     };
-
     const clearFilters = () => {
         setFilters({
             ornamentType: '',
@@ -109,13 +97,10 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
         setSortOption('');
         setSearchTerm('');
     };
-
     const ornamentTypes = [...new Set(products.map(p => p.ornament && p.ornament.name).filter(Boolean))];
     const purityTypes = [...new Set(products.map(p => p.purity && p.purity.name).filter(Boolean))];
-
-    // Get display name for category code
     const getCategoryDisplayName = (code) => {
-        switch(code) {
+        switch (code) {
             case 'B.BALI': return "Earrings";
             case 'BCLT': return 'Bracelet';
             case 'GR': return "Man's Ring";
@@ -129,14 +114,12 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
             default: return code;
         }
     };
-
     const activeFiltersCount = (
         (filters.ornamentType ? 1 : 0) +
         (filters.purity ? 1 : 0) +
         (filters.inStock ? 1 : 0) +
         (sortOption ? 1 : 0)
     );
-
     return (
         <div className="container mx-auto px-4 py-8" id="products-section">
             <div className="lg:grid lg:grid-cols-4 lg:gap-8">
@@ -149,7 +132,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         <Filter size={18} />
                         <span>Filters {activeFiltersCount > 0 && `(${activeFiltersCount})`}</span>
                     </button>
-
                     <div className="relative w-full max-w-xs ml-4">
                         <input
                             type="text"
@@ -161,7 +143,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         <Search className="absolute left-3 top-2.5 text-brand-500" size={18} />
                     </div>
                 </div>
-
                 {/* Mobile Filter Sidebar (Overlay) */}
                 <div className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${showMobileFilters ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     <div className={`absolute top-0 left-0 h-full w-4/5 max-w-xs bg-white shadow-xl transform transition-transform duration-300 ${showMobileFilters ? 'translate-x-0' : '-translate-x-full'}`}>
@@ -174,7 +155,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                 <X size={20} />
                             </button>
                         </div>
-
                         <div className="p-4 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 70px)' }}>
                             {/* Search in mobile sidebar */}
                             <div className="relative mb-6">
@@ -187,13 +167,11 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                 />
                                 <Search className="absolute left-3 top-2.5 text-brand-500" size={18} />
                             </div>
-
                             {/* Filter options for mobile */}
                             <div className="space-y-6">
                                 {renderFilterOptions()}
                             </div>
                         </div>
-
                         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-brand-100 bg-white">
                             <div className="flex space-x-3">
                                 <button
@@ -212,7 +190,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         </div>
                     </div>
                 </div>
-
                 {/* Desktop Sidebar */}
                 <div className="hidden lg:block lg:col-span-1">
                     <div className="bg-white rounded-lg shadow-sm border border-brand-100 sticky top-24">
@@ -230,7 +207,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                 </div>
                             )}
                         </div>
-
                         <div className="p-4">
                             <div className="relative mb-6">
                                 <input
@@ -242,14 +218,12 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                 />
                                 <Search className="absolute left-3 top-2.5 text-brand-500" size={18} />
                             </div>
-
                             <div className="space-y-6">
                                 {renderFilterOptions()}
                             </div>
                         </div>
                     </div>
                 </div>
-
                 {/* Product Grid */}
                 <div className="lg:col-span-3 mt-6 lg:mt-0">
                     <div className="flex items-center justify-between mb-6">
@@ -261,7 +235,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                 </span>
                             )}
                         </h2>
-
                         <div className="flex items-center space-x-2">
                             <span className="text-sm text-brand-600 hidden sm:inline">Sort by:</span>
                             <select
@@ -275,7 +248,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                             </select>
                         </div>
                     </div>
-
                     {loading ? (
                         <div className="flex justify-center items-center h-64">
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -322,7 +294,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                                         <p>Net Wt: {product.netWt}g {product.stoneWt > 0 && `| Stone Wt: ${product.stoneWt}g`}</p>
                                                         <p>Gross Wt: {product.grossWt}g | {product.purity.name}K</p>
                                                     </div>
-
                                                     {/* For mobile - hidden on medium and larger screens */}
                                                     <div className="sm:hidden space-y-1">
                                                         <p>Net Wt: {product.netWt}g</p>
@@ -339,7 +310,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                     ))}
                                 </div>
                             )}
-
                             {filteredProducts.length > 0 && (
                                 <div className="flex justify-center mt-8">
                                     <nav className="flex items-center space-x-2">
@@ -388,7 +358,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
             </div>
         </div>
     );
-
     function renderFilterOptions() {
         return (
             <>
@@ -419,7 +388,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         ))}
                     </div>
                 </div>
-
                 <div>
                     <h3 className="text-sm font-medium text-brand-800 mb-3">Gold Purity</h3>
                     <div className="space-y-2">
@@ -447,7 +415,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         ))}
                     </div>
                 </div>
-
                 <div>
                     <h3 className="text-sm font-medium text-brand-800 mb-3">Availability</h3>
                     <label className="flex items-center text-sm text-brand-700 hover:text-brand-500 cursor-pointer">
@@ -460,7 +427,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         In Stock Only
                     </label>
                 </div>
-
                 <div className="lg:hidden">
                     <h3 className="text-sm font-medium text-brand-800 mb-3">Sort By</h3>
                     <div className="space-y-2">
@@ -500,5 +466,4 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
         );
     }
 };
-
 export default FilterBar;

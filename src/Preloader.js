@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-
 const EnhancedPreloader = () => {
     const [fadeOut, setFadeOut] = useState(false);
     const [loadingProgress, setLoadingProgress] = useState(0);
@@ -7,7 +6,6 @@ const EnhancedPreloader = () => {
     const [showText, setShowText] = useState(false);
     const [showSparkles, setShowSparkles] = useState(false);
     const containerRef = useRef(null);
-    
     // Inject custom animations
     useEffect(() => {
         if (typeof document !== 'undefined' && !document.getElementById('preloader-animations')) {
@@ -80,7 +78,6 @@ const EnhancedPreloader = () => {
             document.head.appendChild(styleSheet);
         }
     }, []);
-
     // Animate the loading sequence
     useEffect(() => {
         // Simulate loading progress
@@ -90,37 +87,30 @@ const EnhancedPreloader = () => {
                 return newProgress > 100 ? 100 : newProgress;
             });
         }, 300);
-        
         // Show elements in sequence
         setTimeout(() => setShowLogo(true), 300);
         setTimeout(() => setShowText(true), 700);
         setTimeout(() => setShowSparkles(true), 1200);
-        
         // Start fade out after loading completes or timeout
         const timer = setTimeout(() => {
             clearInterval(interval);
             setLoadingProgress(100);
             setTimeout(() => setFadeOut(true), 500);
         }, 2500);
-        
         return () => {
             clearInterval(interval);
             clearTimeout(timer);
         };
     }, []);
-    
     // Create random sparkles
     useEffect(() => {
         if (!showSparkles || !containerRef.current) return;
-        
         const container = containerRef.current;
         const containerRect = container.getBoundingClientRect();
-        
         // Create sparkles
         const createSparkles = () => {
             // Maximum 6 sparkles at a time
             if (container.querySelectorAll('.sparkle').length > 6) return;
-            
             const size = Math.random() * 10 + 5;
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
@@ -130,9 +120,7 @@ const EnhancedPreloader = () => {
             sparkle.style.top = `${Math.random() * containerRect.height}px`;
             sparkle.style.animation = `sparkle ${Math.random() * 1 + 1}s ease-in-out infinite`;
             sparkle.style.animationDelay = `${Math.random() * 1}s`;
-            
             container.appendChild(sparkle);
-            
             // Remove after some time to prevent too many elements
             setTimeout(() => {
                 if (sparkle && sparkle.parentNode === container) {
@@ -140,29 +128,23 @@ const EnhancedPreloader = () => {
                 }
             }, 3000);
         };
-        
         // Create initial sparkles
         for (let i = 0; i < 5; i++) {
             createSparkles();
         }
-        
         // Continue creating sparkles
         const sparkleInterval = setInterval(createSparkles, 300);
-        
         return () => clearInterval(sparkleInterval);
     }, [showSparkles]);
-
     // Create rotating diamonds
     const renderDiamonds = () => {
         const diamonds = [];
         const total = 3;
-        
         for (let i = 0; i < total; i++) {
             const delay = i * 0.3;
             const size = 10 + (i * 5);
-            
             diamonds.push(
-                <div 
+                <div
                     key={i}
                     className="diamond"
                     style={{
@@ -175,15 +157,13 @@ const EnhancedPreloader = () => {
                 />
             );
         }
-        
         return diamonds;
     };
-
     return (
-        <div 
+        <div
             className={`fixed inset-0 z-50 transition-opacity duration-700 ${fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-            style={{ 
-                background: 'radial-gradient(circle, rgba(255,247,247,1) 0%, rgba(255,255,255,1) 100%)' 
+            style={{
+                background: 'radial-gradient(circle, rgba(255,247,247,1) 0%, rgba(255,255,255,1) 100%)'
             }}
         >
             <div className="absolute inset-0 overflow-hidden">
@@ -191,8 +171,7 @@ const EnhancedPreloader = () => {
                 <div className="absolute top-1/4 left-1/4 opacity-10 w-64 h-64 rounded-full border border-brand-300 ring-rotate"></div>
                 <div className="absolute bottom-1/4 right-1/3 opacity-10 w-48 h-48 rounded-full border border-brand-300 ring-rotate" style={{ animationDirection: 'reverse', animationDuration: '15s' }}></div>
             </div>
-            
-            <div 
+            <div
                 ref={containerRef}
                 className="flex flex-col items-center justify-center h-full relative"
             >
@@ -202,65 +181,60 @@ const EnhancedPreloader = () => {
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-32 h-32 rounded-full border-2 border-dashed border-brand-200 ring-rotate opacity-50"></div>
                     </div>
-                    
                     {/* Small decorative diamonds */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         {renderDiamonds()}
                     </div>
-                    
                     {/* Logo container with glow */}
-                    <div 
+                    <div
                         className={`relative w-24 h-24 rounded-full overflow-hidden border-4 border-brand-500 p-1 bg-white transition-all duration-1000 ${showSparkles ? 'shadow-lg shadow-brand-300/40' : ''}`}
-                        style={{ 
+                        style={{
                             animation: showSparkles ? 'circle-pulse 2s infinite ease-in-out' : 'none'
                         }}
                     >
                         {/* Logo image with reveal animation */}
-                        <img 
-                            src="/assets/logo.png" 
-                            alt="Dimoss Jewellery Logo" 
+                        <img
+                            src="/assets/logo.png"
+                            alt="Dimoss Jewellery Logo"
                             className="w-full h-full object-cover rounded-full"
-                            style={{ 
+                            style={{
                                 animation: showLogo ? 'logo-reveal 1s forwards cubic-bezier(0.26, 0.53, 0.74, 1.48)' : 'none',
                                 opacity: 0
                             }}
                         />
-                        
                         {/* Overlay light effect */}
-                        <div 
+                        <div
                             className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/30 rounded-full opacity-0 transition-opacity duration-700"
                             style={{ opacity: showLogo ? 0.6 : 0 }}
                         ></div>
                     </div>
                 </div>
-                
                 {/* Text with reveal animation */}
-                <div 
+                <div
                     className="mt-6 flex flex-col items-center overflow-hidden"
                     style={{ opacity: showText ? 1 : 0 }}
                 >
-                    <h2 
+                    <h2
                         className="text-xl font-serif font-bold text-brand-800"
-                        style={{ 
+                        style={{
                             animation: showText ? 'text-reveal 0.8s forwards ease-out' : 'none',
                             opacity: 0
                         }}
                     >
                         DIMOSS JEWELLERY
                     </h2>
-                    <p 
+                    <p
                         className="mt-2 text-brand-600 font-medium"
-                        style={{ 
+                        style={{
                             animation: showText ? 'text-reveal 0.8s forwards ease-out 0.2s' : 'none',
                             opacity: 0
                         }}
                     >
                         Loading Exquisite Collection...
                     </p>
-                    
                     {/* Progress bar */}
                     <div className="mt-4 w-48 h-1 bg-brand-100 rounded-full overflow-hidden">
-                        <div 
+                        <div
                             className="h-full bg-gradient-to-r from-brand-300 to-brand-500 rounded-full transition-all duration-300 ease-out"
                             style={{ width: `${loadingProgress}%` }}
                         ></div>
@@ -270,5 +244,4 @@ const EnhancedPreloader = () => {
         </div>
     );
 };
-
 export default EnhancedPreloader;

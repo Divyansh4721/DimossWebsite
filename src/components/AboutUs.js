@@ -4,11 +4,9 @@ import { MapPin, Clock, Phone, Mail, ArrowRight, Heart } from 'lucide-react';
 import Header from './Catalog/Header';
 import Footer from './Catalog/Footer';
 import WhatsappBubble from './Catalog/WhatsappBubble';
-
 const DimossAboutUs = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-
     // Add animations to head
     useEffect(() => {
         if (typeof document !== 'undefined' && !document.getElementById('about-animations')) {
@@ -64,13 +62,11 @@ const DimossAboutUs = () => {
             `;
             document.head.appendChild(styleSheet);
         }
-
         // Trigger visibility after mount for animations
         setTimeout(() => {
             setIsVisible(true);
         }, 300);
     }, []);
-
     return (
         <div className="min-h-screen bg-background-page flex flex-col">
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
@@ -86,8 +82,6 @@ const DimossAboutUs = () => {
                             Crafting exquisite jewellery for life's most precious moments since 1197
                         </p>
                     </div>
-
-
                     {/* Store Info Card */}
                     <div
                         className={`bg-white rounded-xl shadow-md overflow-hidden mb-12 ${isVisible ? 'fade-in' : ''}`}
@@ -106,7 +100,6 @@ const DimossAboutUs = () => {
                                 </div>
                             </div>
                         </div>
-
                         <div className="p-6">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="flex flex-col items-center text-center p-5 bg-brand-50 rounded-lg border border-brand-100 transition-all duration-300 hover:shadow-md hover:border-brand-200 pulse-subtle">
@@ -121,7 +114,6 @@ const DimossAboutUs = () => {
                                         <p>India</p>
                                     </address>
                                 </div>
-
                                 <div className="flex flex-col items-center text-center p-5 bg-brand-50 rounded-lg border border-brand-100 transition-all duration-300 hover:shadow-md hover:border-brand-200 pulse-subtle">
                                     <div className="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
                                         <Clock size={24} className="text-brand-600" />
@@ -133,7 +125,6 @@ const DimossAboutUs = () => {
                                         <p>Sunday: 11:00 AM - 6:00 PM</p>
                                     </div>
                                 </div>
-
                                 <div className="flex flex-col items-center text-center p-5 bg-brand-50 rounded-lg border border-brand-100 transition-all duration-300 hover:shadow-md hover:border-brand-200 pulse-subtle">
                                     <div className="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mb-4 shadow-sm">
                                         <Phone size={24} className="text-brand-600" />
@@ -161,7 +152,6 @@ const DimossAboutUs = () => {
                                     </div>
                                 </div>
                             </div>
-
                             {/* Map Section */}
                             <div
                                 className={`mt-8 rounded-lg overflow-hidden shadow-md border border-brand-100 shimmer-effect ${isVisible ? 'fade-in' : ''}`}
@@ -173,7 +163,6 @@ const DimossAboutUs = () => {
                                     className="w-full h-64 object-cover"
                                 />
                             </div>
-
                             {/* Action Buttons */}
                             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                                 <a
@@ -195,28 +184,23 @@ const DimossAboutUs = () => {
                             </div>
                         </div>
                     </div>
-
                     {/* About Us Text */}
                     <div
                         className={`p-8 bg-white rounded-xl shadow-md border border-brand-100 ${isVisible ? 'fade-in' : ''}`}
                         style={{ animationDelay: '0.9s' }}
                     >
                         <h3 className="text-2xl font-serif font-bold text-brand-800 mb-6">Welcome to Dimoss</h3>
-
                         <div className="space-y-4 text-brand-700">
                             <p>
                                 Find your piece of delight at Dimoss! We offer the finest gold and diamond jewellery, crafted from precious metals and embellished with elegant stones. The jewel of your dreams awaits you.
                             </p>
-
                             <p>
                                 From festive and wedding pieces to men's jewellery and everyday designs, discover countless treasures to spoil yourself with. We specialize in the finest quality jewellery repairs, remodeling and custom designs.
                             </p>
-
                             <p>
                                 Our one-on-one, personalized design service ensures quality workmanship and attention to detail in every piece. We invite you to visit our Karnal store and experience luxury craftsmanship firsthand.
                             </p>
                         </div>
-
                         <div className="mt-8 flex items-center justify-center">
                             <div className="w-full max-w-md">
                                 <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
@@ -230,14 +214,11 @@ const DimossAboutUs = () => {
                     </div>
                 </div>
             </main>
-
             <div className="mt-12"></div>
             <Footer />
-
             {/* Animated WhatsApp Button */}
             <WhatsappBubble />
         </div>
     );
 };
-
 export default DimossAboutUs;
