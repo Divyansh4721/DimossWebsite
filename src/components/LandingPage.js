@@ -215,7 +215,7 @@ const DimossLandingPage = () => {
         <header className="w-full flex justify-between items-center mb-8">
           <div className="text-brand-700 text-sm md:text-base flex space-x-6">
             <a href="/us" className="hover:text-brand-500 transition-colors duration-300">About</a>
-            <a href="https://wa.me/917404413382?text=Hi" className="hover:text-brand-500 transition-colors duration-300">Contact</a>
+            <a href="https://wa.me/917027701770?text=Hi" className="hover:text-brand-500 transition-colors duration-300">Contact</a>
           </div>
         </header>
         {/* Main hero section */}
