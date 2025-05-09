@@ -218,7 +218,7 @@ const EnhancedPreloader = () => {
                         {/* Logo image with reveal animation */}
                         <img 
                             src="/assets/logo.png" 
-                            alt="Dimoss Jewelry Logo" 
+                            alt="Dimoss Jewellery Logo" 
                             className="w-full h-full object-cover rounded-full"
                             style={{ 
                                 animation: showLogo ? 'logo-reveal 1s forwards cubic-bezier(0.26, 0.53, 0.74, 1.48)' : 'none',
@@ -246,7 +246,7 @@ const EnhancedPreloader = () => {
                             opacity: 0
                         }}
                     >
-                        DIMOSS JEWELRY
+                        DIMOSS JEWELLERY
                     </h2>
                     <p 
                         className="mt-2 text-brand-600 font-medium"

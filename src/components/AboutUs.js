@@ -83,7 +83,7 @@ const DimossAboutUs = () => {
                     >
                         <h1 className="text-4xl md:text-5xl font-serif font-bold text-brand-800 mb-4">About Dimoss</h1>
                         <p className="text-brand-600 text-lg max-w-2xl mx-auto">
-                            Crafting exquisite jewelry for life's most precious moments since 2010
+                            Crafting exquisite jewellery for life's most precious moments since 1197
                         </p>
                     </div>
 
@@ -169,7 +169,7 @@ const DimossAboutUs = () => {
                             >
                                 <img
                                     src="/assets/Dimoss-Google-Maps.png"
-                                    alt="Map to Dimoss Jewelry Store"
+                                    alt="Map to Dimoss Jewellery Store"
                                     className="w-full h-64 object-cover"
                                 />
                             </div>
@@ -205,11 +205,11 @@ const DimossAboutUs = () => {
 
                         <div className="space-y-4 text-brand-700">
                             <p>
-                                Find your piece of delight at Dimoss! We offer the finest gold and diamond jewelry, crafted from precious metals and embellished with elegant stones. The jewel of your dreams awaits you.
+                                Find your piece of delight at Dimoss! We offer the finest gold and diamond jewellery, crafted from precious metals and embellished with elegant stones. The jewel of your dreams awaits you.
                             </p>
 
                             <p>
-                                From festive and wedding pieces to men's jewelry and everyday designs, discover countless treasures to spoil yourself with. We specialize in the finest quality jewelry repairs, remodeling and custom designs.
+                                From festive and wedding pieces to men's jewellery and everyday designs, discover countless treasures to spoil yourself with. We specialize in the finest quality jewellery repairs, remodeling and custom designs.
                             </p>
 
                             <p>
@@ -222,7 +222,7 @@ const DimossAboutUs = () => {
                                 <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
                                 <div className="flex justify-center -mt-3">
                                     <span className="bg-white px-4 text-brand-500 italic font-serif">
-                                        Crafting memories since 2010
+                                        Crafting memories since 1197
                                     </span>
                                 </div>
                             </div>

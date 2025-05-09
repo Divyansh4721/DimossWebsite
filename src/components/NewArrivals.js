@@ -6,23 +6,59 @@ import FilterBar from './Catalog/FilterBar';
 import Footer from './Catalog/Footer';
 import WhatsappBubble from './Catalog/WhatsappBubble';
 
-const DimossJewelleryCatalog = () => {
+const DimossJewelleryNewArrivals = () => {
     const location = useLocation();
     const [products, setProducts] = useState([]);
+    const [newArrivals, setNewArrivals] = useState([]);
     let firstRender = useRef(true);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getCategoryDisplayName = (code) => {
+        switch(code) {
+            case 'B.Earrings': return "Earrings";
+            case 'BCLT': return 'Bracelet';
+            case 'GR': return "Man's Ring";
+            case 'KADE': return "Kangan";
+            case 'LR': return "Women's Ring";
+            case 'NP': return 'Nose Pin';
+            case 'PDL': return 'Pendant';
+            case 'TOPS': return 'Tops';
+            case 'SET': return 'Set';
+            case 'CH': return 'Chain';
+            default: return code;
+        }
+    };
 
     useEffect(() => {
         async function fetchData() {
             try {
+                setIsLoading(true);
                 const response = await fetch('https://stock.divyanshbansal.com/dimoss-website');
                 const data = await response.json();
+
+                // Filter in-stock products first
+                const inStockProducts = data.filter(product => product.isInStock);
+
+                // Sort products by createdDate (newest first)
+                const sortedProducts = [...inStockProducts].sort((a, b) => {
+                    const dateA = new Date(a.createdDate || 0);
+                    const dateB = new Date(b.createdDate || 0);
+                    return dateB - dateA;
+                });
+
+                // Get the 20 newest products
+                const newest = sortedProducts.slice(0, 20);
+
                 setProducts(data);
+                setNewArrivals(newest);
+                setIsLoading(false);
                 firstRender.current = false;
             } catch (error) {
                 console.error('Error fetching products:', error);
+                setIsLoading(false);
             }
         }
         if (firstRender.current) {
@@ -54,6 +90,16 @@ const DimossJewelleryCatalog = () => {
         }).format(price);
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('en-IN', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        }).format(date);
+    };
+
     const generateWhatsAppMessage = (product) => {
         if (!product) return '';
         const message = `Hi, I'm interested in this Jewellery product:
@@ -72,12 +118,53 @@ https://dimoss.in/products/${product.index}`;
         <div className="min-h-screen bg-background-page flex flex-col">
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-            <div className="flex-grow">
-                <FilterBar
-                    location={location}
-                    products={products}
-                    onProductSelect={setSelectedProduct}
-                />
+            <div className="container mx-auto px-4 py-8">
+                <div className="flex items-center mb-8">
+                    <div className="w-1.5 h-12 bg-brand-500 rounded-full mr-4"></div>
+                    <div>
+                        <h1 className="text-3xl font-serif font-semibold text-brand-800">New Arrivals</h1>
+                        <p className="text-brand-600">Discover our latest jewellery</p>
+                    </div>
+                </div>
+
+                {isLoading ? (
+                    <div className="flex justify-center items-center py-16">
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-500"></div>
+                    </div>
+                ) : newArrivals.length === 0 ? (
+                    <div className="text-center py-16">
+                        <h3 className="text-xl text-brand-700 mb-2">No new arrivals found</h3>
+                        <p className="text-brand-600">Please check back soon for our latest products</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {newArrivals.map((product) => (
+                            <div
+                                key={product._id}
+                                className="bg-white rounded-lg overflow-hidden shadow-sm border border-brand-100 hover:shadow-md transition-shadow cursor-pointer"
+                                onClick={() => setSelectedProduct(product)}
+                            >
+                                <div className="relative aspect-square overflow-hidden bg-white">
+                                    <img
+                                        src={`https://stock.divyanshbansal.com/uploads/${product.stockImage[0]?.fileName}`}
+                                        alt={`Jewellery item ${product.index}`}
+                                        className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
+                                    />
+                                    
+                                </div>
+                                <div className="p-4">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <h3 className="font-serif font-medium text-brand-800">
+                                            <span className="text-brand-500">{product.prefix.name}</span>-{product.index}
+                                        </h3>
+                                    </div>
+                                    <p className="text-sm text-brand-600 mb-1">{getCategoryDisplayName(product.ornament.name)} • {product.purity.name}K</p>
+                                    <p className="text-lg font-bold text-brand-700 mb-1">{formatPrice(product.sellingPrice)}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Product Detail Modal */}
@@ -88,8 +175,7 @@ https://dimoss.in/products/${product.index}`;
                             <div className="flex items-center">
                                 <div className="w-1 h-8 bg-brand-500 rounded-full mr-3"></div>
                                 <div>
-                                    <h2 className="text-xl font-serif font-medium text-brand-800">{selectedProduct.ornament.name}</h2>
-                                    <p className="text-brand-500 text-sm">Exclusive Collection</p>
+                                    <h2 className="text-xl font-serif font-medium text-brand-800">{getCategoryDisplayName(selectedProduct.ornament.name)}</h2>
                                 </div>
                             </div>
                             <button
@@ -107,19 +193,11 @@ https://dimoss.in/products/${product.index}`;
                                 <div className="relative bg-white rounded-lg overflow-hidden border border-brand-100 shadow-sm">
                                     <div className="relative aspect-square overflow-hidden">
                                         <img
-                                            src={`https://stock.divyanshbansal.com/uploads/${selectedProduct.stockImage[selectedImageIndex].fileName}`}
+                                            src={`https://stock.divyanshbansal.com/uploads/${selectedProduct.stockImage[selectedImageIndex]?.fileName}`}
                                             alt={`Jewellery item ${selectedProduct.index}`}
                                             className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                                         />
-                                        {!selectedProduct.isInStock ? (
-                                            <div className="absolute top-4 left-4 bg-danger text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                                                Out of Stock
-                                            </div>
-                                        ) : (
-                                            <div className="absolute top-4 left-4 bg-success text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                                                In Stock
-                                            </div>
-                                        )}
+                                       
                                     </div>
                                 </div>
                                 <div className="mt-4 grid grid-cols-4 gap-2">
@@ -162,6 +240,7 @@ https://dimoss.in/products/${product.index}`;
                                             Estimated Delivery: <span className="text-brand-800 font-medium">3-4 Business Days</span>
                                         </span>
                                     </div>
+                                    
                                 </div>
 
                                 {/* Specifications */}
@@ -239,8 +318,8 @@ https://dimoss.in/products/${product.index}`;
                                         <Target className="h-6 w-6 text-brand-500" />
                                     </div>
                                     <div>
-                                        <h5 className="font-medium text-brand-800">Need Assistance?</h5>
-                                        <p className="text-sm text-brand-600">Our jewellery experts are available to help</p>
+                                        <h5 className="font-medium text-brand-800">Ready to Purchase?</h5>
+                                        <p className="text-sm text-brand-600">This item is in stock and ready to ship</p>
                                     </div>
                                     <div className="flex gap-3 mt-3 sm:mt-0 sm:ml-auto">
                                         <a
@@ -267,4 +346,4 @@ https://dimoss.in/products/${product.index}`;
     );
 };
 
-export default DimossJewelleryCatalog;
+export default DimossJewelleryNewArrivals;

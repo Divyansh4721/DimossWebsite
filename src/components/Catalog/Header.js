@@ -97,7 +97,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
   const addSparkle = (e) => {
     const logo = e.currentTarget;
     const logoRect = logo.getBoundingClientRect();
-    
+
     // Create sparkle elements
     for (let i = 0; i < 5; i++) {
       const size = Math.random() * 6 + 3;
@@ -108,10 +108,10 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
       sparkle.style.left = `${Math.random() * logoRect.width}px`;
       sparkle.style.top = `${Math.random() * logoRect.height}px`;
       sparkle.style.opacity = Math.random() * 0.5 + 0.3;
-      
+
       // Add to logo element
       logo.appendChild(sparkle);
-      
+
       // Remove after animation
       setTimeout(() => {
         sparkle.remove();
@@ -133,56 +133,56 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
               >
                 <Menu size={22} />
               </button>
-              
+
               <div className="flex items-center">
                 <Link to="/" className="flex items-center group relative">
                   {/* Animated logo */}
-                  <div 
+                  <div
                     className="relative h-10 w-10 rounded-full overflow-hidden mr-3 shadow-md transition-all duration-500 group-hover:shadow-brand-200 logo-float"
                     onMouseEnter={addSparkle}
                   >
                     <img
                       src="/assets/logo.png"
-                      alt="Dimoss Jewelry Logo"
+                      alt="Dimoss Jewellery Logo"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  
+
                   <div className="flex flex-col">
                     {/* Animated brand name - letter by letter */}
                     <h1 className="text-2xl font-serif font-bold tracking-wider text-brand-800 relative">
-                      <span 
+                      <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 0 ? 'letter-bounce' : ''}`}
                         onMouseEnter={() => setHoverLetter(0)}
                         onMouseLeave={() => setHoverLetter(null)}
                         style={{ transformOrigin: 'bottom center' }}
                       >D</span>
-                      <span 
+                      <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 1 ? 'letter-bounce' : ''}`}
                         onMouseEnter={() => setHoverLetter(1)}
                         onMouseLeave={() => setHoverLetter(null)}
                         style={{ transformOrigin: 'bottom center' }}
                       >i</span>
-                      <span 
+                      <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 2 ? 'letter-bounce' : ''}`}
                         onMouseEnter={() => setHoverLetter(2)}
                         onMouseLeave={() => setHoverLetter(null)}
                         style={{ transformOrigin: 'bottom center' }}
                       >m</span>
-                      <span 
+                      <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 3 ? 'letter-bounce' : ''}`}
                         onMouseEnter={() => setHoverLetter(3)}
                         onMouseLeave={() => setHoverLetter(null)}
                         style={{ transformOrigin: 'bottom center' }}
                       >o</span>
-                      <span 
+                      <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 4 ? 'letter-bounce' : ''}`}
                         onMouseEnter={() => setHoverLetter(4)}
                         onMouseLeave={() => setHoverLetter(null)}
                         style={{ transformOrigin: 'bottom center' }}
                       >s</span>
-                      <span 
+                      <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 5 ? 'letter-bounce' : ''}`}
                         onMouseEnter={() => setHoverLetter(5)}
                         onMouseLeave={() => setHoverLetter(null)}
@@ -201,7 +201,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
                 </Link>
               </div>
             </div>
-            
+
             {/* Center navigation - desktop only */}
             <nav className="hidden md:flex items-center justify-center space-x-8 text-brand-700 font-medium text-sm">
               <Link to="/" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
@@ -210,7 +210,10 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
               <Link to="/collections" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
                 COLLECTIONS
               </Link>
-              <Link to="/new" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
+              <Link to="/catalog" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+                CATALOG
+              </Link>
+              <Link to="/na" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
                 NEW ARRIVALS
               </Link>
               <Link to="/us" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
@@ -220,12 +223,11 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile menu */}
-      <div 
-        className={`md:hidden bg-white text-brand-800 border-b border-brand-200 overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? 'max-h-64' : 'max-h-0'
-        }`}
+      <div
+        className={`md:hidden bg-white text-brand-800 border-b border-brand-200 overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-64' : 'max-h-0'
+          }`}
       >
         <nav className="container mx-auto px-4 py-2 flex flex-col">
           <Link to="/" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
@@ -234,7 +236,10 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
           <Link to="/collections" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
             COLLECTIONS
           </Link>
-          <Link to="/new" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+          <Link to="/catalog" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
+            Catalog
+          </Link>
+          <Link to="/na" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
             NEW ARRIVALS
           </Link>
           <Link to="/us" className="py-3 text-sm font-medium hover:text-brand-500 transition-colors">

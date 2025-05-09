@@ -13,7 +13,7 @@ function Footer() {
                         <div className="flex items-center mb-4">
                             <img
                                 src="/assets/logo.png"
-                                alt="Dimoss Jewelry Logo"
+                                alt="Dimoss Jewellery Logo"
                                 className="h-10 w-10 rounded-full mr-3 shadow-sm"
                             />
                             <div>
@@ -22,7 +22,7 @@ function Footer() {
                             </div>
                         </div>
                         <p className="text-brand-600 mb-6">
-                            Discover our exquisite collection of handcrafted jewelry pieces,
+                            Discover our exquisite collection of handcrafted jewellery pieces,
                             designed to celebrate life's most precious moments with elegance and timeless beauty.
                         </p>
                         <div className="flex space-x-3">
@@ -64,7 +64,12 @@ function Footer() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/new" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
+                                    <Link to="/catalog" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
+                                        <span className="mr-2 text-brand-400">→</span> Catalog
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/na" className="text-brand-600 hover:text-brand-500 transition-colors duration-300 flex items-center">
                                         <span className="mr-2 text-brand-400">→</span> New Arrivals
                                     </Link>
                                 </li>
@@ -117,7 +122,7 @@ function Footer() {
                 {/* Copyright bar */}
                 <div className="border-t border-brand-100 mt-10 py-6 flex flex-col sm:flex-row justify-between items-center text-brand-600 text-sm">
                     <p className="flex items-center mb-2 sm:mb-0">
-                        <Copyright className="w-4 h-4 mr-1" /> {new Date().getFullYear()} Dimoss Jewelry. All rights reserved.
+                        <Copyright className="w-4 h-4 mr-1" /> {new Date().getFullYear()} Dimoss Jewellery. All rights reserved.
                     </p>
                     <p className="flex items-center">
                         Made with <Heart className="w-4 h-4 mx-1 text-brand-500" /> in Karnal, India

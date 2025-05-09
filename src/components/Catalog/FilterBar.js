@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, X, ChevronLeft, ChevronRight, ArrowUpDown, Check } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
-const FilterBar = ({ location, products, onProductSelect }) => {
+const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
+    const routerLocation = useLocation();
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filters, setFilters] = useState({
@@ -15,15 +17,27 @@ const FilterBar = ({ location, products, onProductSelect }) => {
     const [showMobileFilters, setShowMobileFilters] = useState(false);
     const itemsPerPage = 20;
 
+    // Get category code from URL query parameters
     useEffect(() => {
-        if (location.state && location.state.ornamentType) {
+        // Check URL query parameters first
+        const searchParams = new URLSearchParams(routerLocation.search);
+        const categoryFromUrl = searchParams.get('category');
+        
+        if (categoryFromUrl) {
             setFilters(prev => ({
                 ...prev,
-                ornamentType: location.state.ornamentType
+                ornamentType: categoryFromUrl
+            }));
+        }
+        // Then check location state as fallback (for backward compatibility)
+        else if (propLocation && propLocation.state && propLocation.state.ornamentType) {
+            setFilters(prev => ({
+                ...prev,
+                ornamentType: propLocation.state.ornamentType
             }));
             window.history.replaceState({}, document.title);
         }
-    }, [location.state]);
+    }, [routerLocation.search, propLocation]);
 
     useEffect(() => {
         if (products.length > 0) {
@@ -98,6 +112,23 @@ const FilterBar = ({ location, products, onProductSelect }) => {
 
     const ornamentTypes = [...new Set(products.map(p => p.ornament && p.ornament.name).filter(Boolean))];
     const purityTypes = [...new Set(products.map(p => p.purity && p.purity.name).filter(Boolean))];
+
+    // Get display name for category code
+    const getCategoryDisplayName = (code) => {
+        switch(code) {
+            case 'B.BALI': return "Earrings";
+            case 'BCLT': return 'Bracelet';
+            case 'GR': return "Man's Ring";
+            case 'KADE': return "Kangan";
+            case 'LR': return "Women's Ring";
+            case 'NP': return 'Nose Pin';
+            case 'PDL': return 'Pendant';
+            case 'TOPS': return 'Tops';
+            case 'SET': return 'Set';
+            case 'CH': return 'Chain';
+            default: return code;
+        }
+    };
 
     const activeFiltersCount = (
         (filters.ornamentType ? 1 : 0) +
@@ -224,6 +255,11 @@ const FilterBar = ({ location, products, onProductSelect }) => {
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-xl font-medium text-brand-800">
                             {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
+                            {filters.ornamentType && (
+                                <span className="text-brand-500 ml-2">
+                                    in {getCategoryDisplayName(filters.ornamentType)}
+                                </span>
+                            )}
                         </h2>
 
                         <div className="flex items-center space-x-2">
@@ -262,7 +298,7 @@ const FilterBar = ({ location, products, onProductSelect }) => {
                                             <div className="relative pt-[100%] bg-neutral-100 overflow-hidden">
                                                 <img
                                                     src={`https://stock.divyanshbansal.com/uploads/${product.stockImage[0].fileName}`}
-                                                    alt={`Jewelry item ${product.index}`}
+                                                    alt={`Jewellery item ${product.index}`}
                                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                                 />
                                                 {!product.isInStock && (
@@ -277,7 +313,7 @@ const FilterBar = ({ location, products, onProductSelect }) => {
                                                         {product.prefix.name}-{product.index}
                                                     </h3>
                                                     <span className="text-xs bg-brand-100 text-brand-800 px-2 py-1 rounded-full">
-                                                        {product.ornament.name}
+                                                        {getCategoryDisplayName(product.ornament.name)}
                                                     </span>
                                                 </div>
                                                 <div className="text-sm text-brand-600 space-y-1">
@@ -357,7 +393,7 @@ const FilterBar = ({ location, products, onProductSelect }) => {
         return (
             <>
                 <div>
-                    <h3 className="text-sm font-medium text-brand-800 mb-3">Jewelry Type</h3>
+                    <h3 className="text-sm font-medium text-brand-800 mb-3">Jewellery Type</h3>
                     <div className="space-y-2 pr-2">
                         <label className="flex items-center text-sm text-brand-700 hover:text-brand-500 cursor-pointer">
                             <input
@@ -378,7 +414,7 @@ const FilterBar = ({ location, products, onProductSelect }) => {
                                     onChange={() => setFilters({ ...filters, ornamentType: type })}
                                     className="h-4 w-4 text-brand-500 focus:ring-brand-500 mr-2"
                                 />
-                                {type}
+                                {getCategoryDisplayName(type)}
                             </label>
                         ))}
                     </div>
