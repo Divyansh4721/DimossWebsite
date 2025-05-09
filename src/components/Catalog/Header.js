@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu, ShoppingBag, Search, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 function Header({ isMenuOpen, setIsMenuOpen }) {
-  // State to control shimmer animation
   const [isShimmering, setIsShimmering] = useState(false);
-  // State for letter-by-letter animations
   const [hoverLetter, setHoverLetter] = useState(null);
-  // Trigger shimmer animation periodically
   useEffect(() => {
     const shimmerInterval = setInterval(() => {
       setIsShimmering(true);
@@ -14,7 +11,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
     }, 7000);
     return () => clearInterval(shimmerInterval);
   }, []);
-  // Add animations to head
   useEffect(() => {
     if (typeof document !== 'undefined' && !document.getElementById('header-animations')) {
       const styleSheet = document.createElement('style');
@@ -87,11 +83,9 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
       document.head.appendChild(styleSheet);
     }
   }, []);
-  // Logo sparkle function
   const addSparkle = (e) => {
     const logo = e.currentTarget;
     const logoRect = logo.getBoundingClientRect();
-    // Create sparkle elements
     for (let i = 0; i < 5; i++) {
       const size = Math.random() * 6 + 3;
       const sparkle = document.createElement('div');
@@ -101,9 +95,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
       sparkle.style.left = `${Math.random() * logoRect.width}px`;
       sparkle.style.top = `${Math.random() * logoRect.height}px`;
       sparkle.style.opacity = Math.random() * 0.5 + 0.3;
-      // Add to logo element
       logo.appendChild(sparkle);
-      // Remove after animation
       setTimeout(() => {
         sparkle.remove();
       }, 1000);
@@ -114,7 +106,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
       <div className="bg-white text-brand-800 border-b border-brand-200 shadow-sm">
         <div className="container mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
-            {/* Left section with menu and logo */}
             <div className="flex items-center space-x-6">
               <button
                 className="md:hidden text-brand-800 hover:text-brand-500 transition-colors"
@@ -125,7 +116,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
               </button>
               <div className="flex items-center">
                 <Link to="/" className="flex items-center group relative">
-                  {/* Animated logo */}
                   <div
                     className="relative h-10 w-10 rounded-full overflow-hidden mr-3 shadow-md transition-all duration-500 group-hover:shadow-brand-200 logo-float"
                     onMouseEnter={addSparkle}
@@ -138,7 +128,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
                   <div className="flex flex-col">
-                    {/* Animated brand name - letter by letter */}
                     <h1 className="text-2xl font-serif font-bold tracking-wider text-brand-800 relative">
                       <span
                         className={`inline-block transition-transform duration-300 hover:text-brand-500 ${hoverLetter === 0 ? 'letter-bounce' : ''}`}
@@ -177,7 +166,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
                         style={{ transformOrigin: 'bottom center' }}
                       >s</span>
                     </h1>
-                    {/* Animated tagline */}
                     <p className="text-xs tracking-wider text-brand-500 relative overflow-hidden">
                       <span className="inline-block relative">
                         THE SOLITAIRE
@@ -188,7 +176,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
                 </Link>
               </div>
             </div>
-            {/* Center navigation - desktop only */}
             <nav className="hidden md:flex items-center justify-center space-x-8 text-brand-700 font-medium text-sm">
               <Link to="/" className="py-2 px-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-500 after:transition-all hover:text-brand-500 hover:after:w-full">
                 HOME
@@ -209,7 +196,6 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
           </div>
         </div>
       </div>
-      {/* Mobile menu */}
       <div
         className={`md:hidden bg-white text-brand-800 border-b border-brand-200 overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-64' : 'max-h-0'
           }`}

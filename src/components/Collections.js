@@ -8,77 +8,76 @@ const DimossJewelleryCollections = () => {
     const [products, setProducts] = useState([]);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    // Add your custom image paths here
     const [categories, setCategories] = useState([
         {
             id: 'womens-ring',
             name: "Women's Ring",
             code: 'LR',
             image: null,
-            customImage: '/assets/categories/WomenRing.png' // Replace with your actual path
+            customImage: '/assets/categories/WomenRing.png'
         },
         {
             id: 'kangan',
             name: 'Kangan',
             code: 'KADE',
             image: null,
-            customImage: '/assets/categories/Kangan.png' // Replace with your actual path
+            customImage: '/assets/categories/Kangan.png'
         },
         {
             id: 'Earrings',
             name: 'Earrings',
             code: 'B.BALI',
             image: null,
-            customImage: '/assets/categories/Earrings.png' // Replace with your actual path
+            customImage: '/assets/categories/Earrings.png'
         },
         {
             id: 'bracelet',
             name: 'Bracelet',
             code: 'BCLT',
             image: null,
-            customImage: '/assets/categories/Bracelets.png' // Replace with your actual path
+            customImage: '/assets/categories/Bracelets.png'
         },
         {
             id: 'nose-pin',
             name: 'Nose Pin',
             code: 'NP',
             image: null,
-            customImage: '/assets/categories/Nose-pin.png' // Replace with your actual path
+            customImage: '/assets/categories/Nose-pin.png'
         },
         {
             id: 'pendant',
             name: 'Pendant',
             code: 'PDL',
             image: null,
-            customImage: '/assets/categories/pendant.png' // Replace with your actual path
+            customImage: '/assets/categories/pendant.png'
         },
         {
             id: 'tops',
             name: 'Tops',
             code: 'TOPS',
             image: null,
-            customImage: '/assets/categories/tops.png' // Replace with your actual path
+            customImage: '/assets/categories/tops.png'
         },
         {
             id: 'mans-ring',
             name: "Men's Ring",
             code: 'GR',
             image: null,
-            customImage: '/assets/categories/Mansring.png' // Replace with your actual path
+            customImage: '/assets/categories/Mansring.png'
         },
         {
             id: 'set',
             name: 'Set',
             code: 'SET',
             image: null,
-            customImage: '/assets/categories/set.png' // Replace with your actual path
+            customImage: '/assets/categories/set.png'
         },
         {
             id: 'chain',
             name: 'Chain',
             code: 'CH',
             image: null,
-            customImage: '/assets/categories/chain.png' // Replace with your actual path
+            customImage: '/assets/categories/chain.png'
         }
     ]);
     const firstRender = useRef(true);
@@ -100,14 +99,10 @@ const DimossJewelleryCollections = () => {
             fetchData();
         }
     }, []);
-    // Find a representative image for each category as a backup
-    // This will only be used if your custom images fail to load
     useEffect(() => {
         if (products.length > 0) {
             const updatedCategories = [...categories];
-            // For each category, find a good representative product
             updatedCategories.forEach((category, index) => {
-                // Find all matching products
                 const matchingProducts = products.filter(product =>
                     product.ornament &&
                     product.ornament.name === category.code &&
@@ -115,16 +110,13 @@ const DimossJewelleryCollections = () => {
                     product.stockImage.length > 0
                 );
                 if (matchingProducts.length > 0) {
-                    // Sort by price descending to get premium items (often better photos)
                     const sortedProducts = [...matchingProducts].sort((a, b) =>
                         b.sellingPrice - a.sellingPrice
                     );
-                    // Prefer in-stock items
                     const inStockProducts = sortedProducts.filter(p => p.isInStock);
                     const bestProduct = inStockProducts.length > 0 ? inStockProducts[0] : sortedProducts[0];
                     updatedCategories[index] = {
                         ...category,
-                        // Keep the fallback from API as secondary option if custom image fails
                         backupImage: `https://stock.divyanshbansal.com/uploads/${bestProduct.stockImage[0].fileName}`
                     };
                 }
@@ -133,10 +125,8 @@ const DimossJewelleryCollections = () => {
         }
     }, [products]);
     const handleCategoryClick = (categoryCode) => {
-        // Navigate to catalog page with the category filter
         navigate(`/catalog?category=${categoryCode}`);
     };
-    // Handle image loading errors
     const handleImageError = (categoryId) => {
         setCategories(prevCategories =>
             prevCategories.map(cat =>
@@ -171,10 +161,6 @@ const DimossJewelleryCollections = () => {
                             >
                                 <div className="overflow-hidden rounded-lg bg-white shadow-md border border-brand-100 hover:shadow-lg transition-all duration-300 h-full">
                                     <div className="aspect-square relative overflow-hidden">
-                                        {/* Image selection logic:
-                                            1. Try custom image first
-                                            2. If custom image fails, try API-sourced backup image
-                                            3. If no images available, show fallback icon */}
                                         {category.customImage ? (
                                             <img
                                                 src={category.customImageError ? (category.backupImage || '') : category.customImage}
@@ -210,7 +196,6 @@ const DimossJewelleryCollections = () => {
                         ))}
                     </div>
                 )}
-                {/* Promotional Banner */}
                 <div className="mt-16 mb-8 rounded-lg overflow-hidden relative">
                     <div className="bg-gradient-to-r from-brand-700 to-brand-500 p-8 md:p-12">
                         <div className="max-w-3xl">
@@ -226,7 +211,6 @@ const DimossJewelleryCollections = () => {
                     </div>
                     <div className="absolute right-0 top-0 h-full w-1/3 bg-brand-pattern opacity-10"></div>
                 </div>
-                {/* Collection Description */}
                 <div className="my-12">
                     <div className="max-w-3xl mx-auto text-center">
                         <h2 className="text-2xl font-serif font-semibold text-brand-800 mb-4">Crafted with Passion</h2>
@@ -242,7 +226,6 @@ const DimossJewelleryCollections = () => {
                     </div>
                 </div>
             </div>
-            {/* Floating WhatsApp */}
             <WhatsappBubble />
             <Footer />
         </div>

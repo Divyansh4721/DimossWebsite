@@ -30,13 +30,10 @@ const DimossJewelleryCatalog = () => {
     useEffect(() => {
         if (selectedProduct) {
             setSelectedImageIndex(0);
-            // Prevent body scroll when modal is open
             document.body.style.overflow = 'hidden';
         } else {
-            // Re-enable body scroll when modal is closed
             document.body.style.overflow = 'auto';
         }
-        // Cleanup function
         return () => {
             document.body.style.overflow = 'auto';
         };
@@ -69,7 +66,6 @@ https://dimoss.in/products/${product.index}`;
                     onProductSelect={setSelectedProduct}
                 />
             </div>
-            {/* Product Detail Modal */}
             {selectedProduct && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 animate-fadeIn backdrop-blur-sm">
                     <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-auto shadow-xl transform animate-scaleIn">
@@ -90,7 +86,6 @@ https://dimoss.in/products/${product.index}`;
                             </button>
                         </div>
                         <div className="p-6 flex flex-col md:flex-row">
-                            {/* Image & thumbnails */}
                             <div className="md:w-1/2 pr-0 md:pr-8 mb-6 md:mb-0">
                                 <div className="relative bg-white rounded-lg overflow-hidden border border-brand-100 shadow-sm">
                                     <div className="relative aspect-square overflow-hidden">
@@ -127,9 +122,7 @@ https://dimoss.in/products/${product.index}`;
                                     ))}
                                 </div>
                             </div>
-                            {/* Details panel */}
                             <div className="md:w-1/2">
-                                {/* Title & price */}
                                 <div className="border-b border-brand-100 pb-4 mb-4">
                                     <div className="flex justify-between items-start">
                                         <h3 className="text-2xl font-serif font-semibold text-brand-800">
@@ -149,7 +142,6 @@ https://dimoss.in/products/${product.index}`;
                                         </span>
                                     </div>
                                 </div>
-                                {/* Specifications */}
                                 <div className="bg-background-page rounded-lg p-4 mb-6 border border-brand-100">
                                     <h4 className="font-medium text-brand-800 border-b border-brand-100 pb-2 mb-3 flex items-center">
                                         <Info className="h-5 w-5 mr-1 text-brand-500" />
@@ -183,7 +175,6 @@ https://dimoss.in/products/${product.index}`;
                                         <p className="font-medium text-brand-800">{selectedProduct.stockType.name}</p>
                                     </div>
                                 </div>
-                                {/* Stone table */}
                                 {selectedProduct.stoneTable && selectedProduct.stoneTable.length > 0 && (
                                     <div className="bg-background-page rounded-lg p-4 mb-6 border border-brand-100">
                                         <h4 className="font-medium text-brand-800 border-b border-brand-100 pb-2 mb-3 flex items-center">
@@ -212,7 +203,6 @@ https://dimoss.in/products/${product.index}`;
                                         </div>
                                     </div>
                                 )}
-                                {/* Assistance */}
                                 <div className="mt-6 bg-white rounded-lg p-4 border border-brand-200 flex flex-col sm:flex-row items-center gap-3">
                                     <div className="bg-brand-50 rounded-full p-3 mr-3">
                                         <Target className="h-6 w-6 text-brand-500" />
@@ -237,7 +227,6 @@ https://dimoss.in/products/${product.index}`;
                     </div>
                 </div>
             )}
-            {/* Floating WhatsApp */}
             <WhatsappBubble />
             <Footer />
         </div>

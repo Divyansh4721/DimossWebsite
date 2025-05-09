@@ -7,32 +7,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary Brand (Dimoss)
         brand: {
-          50:  '#fff7f7',   // ultra–light hint
-          100: '#f7f7f7',   // light background
-          200: '#ffc0cb',   // light accent
+          50: '#fff7f7',
+          100: '#f7f7f7',
+          200: '#ffc0cb',
           300: '#ff9ab3',
           400: '#ff759b',
-          500: '#d14a61',   // core brand
+          500: '#d14a61',
           600: '#a8374d',
           700: '#7a2839',
           800: '#4d1a27',
           900: '#200d14',
           DEFAULT: '#d14a61',
         },
-        // Semantic Accents (unchanged)
         success: {
           DEFAULT: '#4CAF50',
-          dark:    '#3a8c3f',
+          dark: '#3a8c3f',
         },
         danger: {
           DEFAULT: '#EF4444',
-          dark:    '#B91C1C',
+          dark: '#B91C1C',
         },
-        // Versatile Neutral Scale (you can prune or keep as needed)
         neutral: {
-          50:  '#fcf9f6',
+          50: '#fcf9f6',
           100: '#f3f4f6',
           200: '#e5e7eb',
           300: '#d1d5db',
@@ -43,30 +40,29 @@ module.exports = {
           800: '#1f2937',
           900: '#111827',
         },
-        // Contextual Tokens
         background: {
-          page: '#f7f7f7',  // your f7f7f7
-          card: '#ffffff',  // white
+          page: '#f7f7f7',
+          card: '#ffffff',
         },
         border: {
-          DEFAULT: '#ffc0cb', // light accent
-          accent:  '#d14a61',
+          DEFAULT: '#ffc0cb',
+          accent: '#d14a61',
         },
         text: {
-          primary:   '#5e5e5e', // your #5e5e5e
+          primary: '#5e5e5e',
           secondary: '#5e5e5e',
-          muted:     '#5e5e5e',
-          light:     '#ffffff', // white
+          muted: '#5e5e5e',
+          light: '#ffffff',
         },
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],
-        sans:  ['Poppins', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       animation: {
-        fadeIn:        'fadeIn 0.3s ease-in-out',
-        scaleIn:       'scaleIn 0.3s ease-in-out',
-        slideInRight:  'slideInRight 0.3s ease-out',
+        fadeIn: 'fadeIn 0.3s ease-in-out',
+        scaleIn: 'scaleIn 0.3s ease-in-out',
+        slideInRight: 'slideInRight 0.3s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -75,11 +71,11 @@ module.exports = {
         },
         scaleIn: {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
-          '100%': { transform: 'scale(1)',    opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
         },
         slideInRight: {
-          '0%':   { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0)'      },
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
         },
       },
     },

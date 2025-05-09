@@ -126,7 +126,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
     return (
         <div className="container mx-auto px-4 py-8" id="products-section">
             <div className="lg:grid lg:grid-cols-4 lg:gap-8">
-                {/* Mobile Filter Toggle */}
                 <div className="lg:hidden flex items-center justify-between mb-4">
                     <button
                         onClick={() => setShowMobileFilters(true)}
@@ -146,7 +145,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         <Search className="absolute left-3 top-2.5 text-brand-500" size={18} />
                     </div>
                 </div>
-                {/* Mobile Filter Sidebar (Overlay) */}
                 <div className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${showMobileFilters ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     <div className={`absolute top-0 left-0 h-full w-4/5 max-w-xs bg-white shadow-xl transform transition-transform duration-300 ${showMobileFilters ? 'translate-x-0' : '-translate-x-full'}`}>
                         <div className="flex items-center justify-between p-4 border-b border-brand-100">
@@ -159,7 +157,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                             </button>
                         </div>
                         <div className="p-4 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 70px)' }}>
-                            {/* Search in mobile sidebar */}
                             <div className="relative mb-6">
                                 <input
                                     type="text"
@@ -170,7 +167,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                 />
                                 <Search className="absolute left-3 top-2.5 text-brand-500" size={18} />
                             </div>
-                            {/* Filter options for mobile */}
                             <div className="space-y-6">
                                 {renderFilterOptions()}
                             </div>
@@ -193,7 +189,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         </div>
                     </div>
                 </div>
-                {/* Desktop Sidebar */}
                 <div className="hidden lg:block lg:col-span-1">
                     <div className="bg-white rounded-lg shadow-sm border border-brand-100 sticky top-24">
                         <div className="p-4 border-b border-brand-100">
@@ -227,7 +222,6 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                         </div>
                     </div>
                 </div>
-                {/* Product Grid */}
                 <div className="lg:col-span-3 mt-6 lg:mt-0">
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-xl font-medium text-brand-800">
@@ -292,12 +286,10 @@ const FilterBar = ({ location: propLocation, products, onProductSelect }) => {
                                                     </span>
                                                 </div>
                                                 <div className="text-sm text-brand-600 space-y-1">
-                                                    {/* For desktop - hidden on small screens */}
                                                     <div className="hidden sm:block">
                                                         <p>Net Wt: {product.netWt}g {product.stoneWt > 0 && `| Stone Wt: ${product.stoneWt}g`}</p>
                                                         <p>Gross Wt: {product.grossWt}g | {product.purity.name}K</p>
                                                     </div>
-                                                    {/* For mobile - hidden on medium and larger screens */}
                                                     <div className="sm:hidden space-y-1">
                                                         <p>Net Wt: {product.netWt}g</p>
                                                         <p>Gross Wt: {product.grossWt}g</p>

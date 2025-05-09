@@ -6,7 +6,6 @@ function Footer() {
         <footer className="bg-white border-t border-brand-100 mt-16">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between border-t border-brand-100 pt-10">
-                    {/* Brand column */}
                     <div className="mb-8 md:mb-0 md:w-1/3 pr-8">
                         <div className="flex items-center mb-4">
                             <img
@@ -44,9 +43,7 @@ function Footer() {
                             </a>
                         </div>
                     </div>
-                    {/* Links and Contact */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 md:w-2/3">
-                        {/* Quick Links */}
                         <div>
                             <h3 className="text-brand-800 font-medium mb-4 pb-1 border-b border-brand-100">Quick Links</h3>
                             <ul className="space-y-2">
@@ -77,7 +74,6 @@ function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        {/* Contact */}
                         <div>
                             <h3 className="text-brand-800 font-medium mb-4 pb-1 border-b border-brand-100">Contact Us</h3>
                             <address className="not-italic space-y-3">
@@ -114,7 +110,6 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                {/* Copyright bar */}
                 <div className="border-t border-brand-100 mt-10 py-6 flex flex-col sm:flex-row justify-between items-center text-brand-600 text-sm">
                     <p className="flex items-center mb-2 sm:mb-0">
                         <Copyright className="w-4 h-4 mr-1" /> {new Date().getFullYear()} Dimoss Jewellery. All rights reserved.

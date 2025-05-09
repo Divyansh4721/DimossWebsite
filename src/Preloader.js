@@ -6,7 +6,6 @@ const EnhancedPreloader = () => {
     const [showText, setShowText] = useState(false);
     const [showSparkles, setShowSparkles] = useState(false);
     const containerRef = useRef(null);
-    // Inject custom animations
     useEffect(() => {
         if (typeof document !== 'undefined' && !document.getElementById('preloader-animations')) {
             const styleSheet = document.createElement('style');
@@ -78,20 +77,16 @@ const EnhancedPreloader = () => {
             document.head.appendChild(styleSheet);
         }
     }, []);
-    // Animate the loading sequence
     useEffect(() => {
-        // Simulate loading progress
         const interval = setInterval(() => {
             setLoadingProgress(prev => {
                 const newProgress = prev + Math.random() * 15;
                 return newProgress > 100 ? 100 : newProgress;
             });
         }, 300);
-        // Show elements in sequence
         setTimeout(() => setShowLogo(true), 300);
         setTimeout(() => setShowText(true), 700);
         setTimeout(() => setShowSparkles(true), 1200);
-        // Start fade out after loading completes or timeout
         const timer = setTimeout(() => {
             clearInterval(interval);
             setLoadingProgress(100);
@@ -102,14 +97,11 @@ const EnhancedPreloader = () => {
             clearTimeout(timer);
         };
     }, []);
-    // Create random sparkles
     useEffect(() => {
         if (!showSparkles || !containerRef.current) return;
         const container = containerRef.current;
         const containerRect = container.getBoundingClientRect();
-        // Create sparkles
         const createSparkles = () => {
-            // Maximum 6 sparkles at a time
             if (container.querySelectorAll('.sparkle').length > 6) return;
             const size = Math.random() * 10 + 5;
             const sparkle = document.createElement('div');
@@ -121,22 +113,18 @@ const EnhancedPreloader = () => {
             sparkle.style.animation = `sparkle ${Math.random() * 1 + 1}s ease-in-out infinite`;
             sparkle.style.animationDelay = `${Math.random() * 1}s`;
             container.appendChild(sparkle);
-            // Remove after some time to prevent too many elements
             setTimeout(() => {
                 if (sparkle && sparkle.parentNode === container) {
                     sparkle.remove();
                 }
             }, 3000);
         };
-        // Create initial sparkles
         for (let i = 0; i < 5; i++) {
             createSparkles();
         }
-        // Continue creating sparkles
         const sparkleInterval = setInterval(createSparkles, 300);
         return () => clearInterval(sparkleInterval);
     }, [showSparkles]);
-    // Create rotating diamonds
     const renderDiamonds = () => {
         const diamonds = [];
         const total = 3;
@@ -167,7 +155,6 @@ const EnhancedPreloader = () => {
             }}
         >
             <div className="absolute inset-0 overflow-hidden">
-                {/* Background decorative elements */}
                 <div className="absolute top-1/4 left-1/4 opacity-10 w-64 h-64 rounded-full border border-brand-300 ring-rotate"></div>
                 <div className="absolute bottom-1/4 right-1/3 opacity-10 w-48 h-48 rounded-full border border-brand-300 ring-rotate" style={{ animationDirection: 'reverse', animationDuration: '15s' }}></div>
             </div>
@@ -175,24 +162,19 @@ const EnhancedPreloader = () => {
                 ref={containerRef}
                 className="flex flex-col items-center justify-center h-full relative"
             >
-                {/* Main content */}
                 <div className="relative">
-                    {/* Rotating diamond ring */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-32 h-32 rounded-full border-2 border-dashed border-brand-200 ring-rotate opacity-50"></div>
                     </div>
-                    {/* Small decorative diamonds */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         {renderDiamonds()}
                     </div>
-                    {/* Logo container with glow */}
                     <div
                         className={`relative w-24 h-24 rounded-full overflow-hidden border-4 border-brand-500 p-1 bg-white transition-all duration-1000 ${showSparkles ? 'shadow-lg shadow-brand-300/40' : ''}`}
                         style={{
                             animation: showSparkles ? 'circle-pulse 2s infinite ease-in-out' : 'none'
                         }}
                     >
-                        {/* Logo image with reveal animation */}
                         <img
                             src="/assets/logo.png"
                             alt="Dimoss Jewellery Logo"
@@ -202,14 +184,12 @@ const EnhancedPreloader = () => {
                                 opacity: 0
                             }}
                         />
-                        {/* Overlay light effect */}
                         <div
                             className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/30 rounded-full opacity-0 transition-opacity duration-700"
                             style={{ opacity: showLogo ? 0.6 : 0 }}
                         ></div>
                     </div>
                 </div>
-                {/* Text with reveal animation */}
                 <div
                     className="mt-6 flex flex-col items-center overflow-hidden"
                     style={{ opacity: showText ? 1 : 0 }}
@@ -232,7 +212,6 @@ const EnhancedPreloader = () => {
                     >
                         Loading Exquisite Collection...
                     </p>
-                    {/* Progress bar */}
                     <div className="mt-4 w-48 h-1 bg-brand-100 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-gradient-to-r from-brand-300 to-brand-500 rounded-full transition-all duration-300 ease-out"

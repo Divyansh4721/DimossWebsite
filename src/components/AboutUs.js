@@ -7,7 +7,6 @@ import WhatsappBubble from './Catalog/WhatsappBubble';
 const DimossAboutUs = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    // Add animations to head
     useEffect(() => {
         if (typeof document !== 'undefined' && !document.getElementById('about-animations')) {
             const styleSheet = document.createElement('style');
@@ -62,7 +61,6 @@ const DimossAboutUs = () => {
             `;
             document.head.appendChild(styleSheet);
         }
-        // Trigger visibility after mount for animations
         setTimeout(() => {
             setIsVisible(true);
         }, 300);
@@ -72,7 +70,6 @@ const DimossAboutUs = () => {
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <main className="container mx-auto px-4 py-12">
                 <div className="max-w-4xl mx-auto">
-                    {/* Hero Section */}
                     <div
                         className={`text-center mb-10 transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                         style={{ animationDelay: '0.1s' }}
@@ -82,7 +79,6 @@ const DimossAboutUs = () => {
                             Crafting exquisite jewellery for life's most precious moments since 1197
                         </p>
                     </div>
-                    {/* Store Info Card */}
                     <div
                         className={`bg-white rounded-xl shadow-md overflow-hidden mb-12 ${isVisible ? 'fade-in' : ''}`}
                         style={{ animationDelay: '0.5s' }}
@@ -152,7 +148,6 @@ const DimossAboutUs = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* Map Section */}
                             <div
                                 className={`mt-8 rounded-lg overflow-hidden shadow-md border border-brand-100 shimmer-effect ${isVisible ? 'fade-in' : ''}`}
                                 style={{ animationDelay: '0.7s' }}
@@ -163,7 +158,6 @@ const DimossAboutUs = () => {
                                     className="w-full h-64 object-cover"
                                 />
                             </div>
-                            {/* Action Buttons */}
                             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                                 <a
                                     href="https://maps.app.goo.gl/1J4bruFtyfUtYhLL6"
@@ -184,7 +178,6 @@ const DimossAboutUs = () => {
                             </div>
                         </div>
                     </div>
-                    {/* About Us Text */}
                     <div
                         className={`p-8 bg-white rounded-xl shadow-md border border-brand-100 ${isVisible ? 'fade-in' : ''}`}
                         style={{ animationDelay: '0.9s' }}
@@ -216,7 +209,6 @@ const DimossAboutUs = () => {
             </main>
             <div className="mt-12"></div>
             <Footer />
-            {/* Animated WhatsApp Button */}
             <WhatsappBubble />
         </div>
     );
