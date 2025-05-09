@@ -201,9 +201,6 @@ const DimossLandingPage = () => {
       document.head.appendChild(styleSheet);
     }
   }, []);
-  const navigateToCategory = (ornamentType) => {
-    navigate('/catalog', { state: { ornamentType } });
-  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-50 to-white relative overflow-hidden">
       <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
@@ -281,10 +278,10 @@ const DimossLandingPage = () => {
                 description: 'Heritage pieces with modern touches'
               }
             ].map((category, index) => (
-              <div
+              <a
                 key={category.title}
+                href={`/catalog?category=${category.ornamentType}`}
                 className={`relative rounded-xl overflow-hidden shadow-md group cursor-pointer transition-all duration-500 hover:shadow-lg transform hover:-translate-y-1 border border-brand-100 delay-${index * 200}`}
-                onClick={() => navigateToCategory(category.ornamentType)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-800/70 to-transparent z-10"></div>
                 <img
@@ -301,7 +298,7 @@ const DimossLandingPage = () => {
                 <div className="absolute top-3 right-3 bg-white/80 text-brand-500 rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 transform rotate-45 group-hover:rotate-0">
                   <ArrowRight size={16} />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>

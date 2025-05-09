@@ -208,7 +208,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
             COLLECTIONS
           </Link>
           <Link to="/catalog" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
-            Catalog
+            CATALOG
           </Link>
           <Link to="/new-arrival" className="py-3 border-b border-brand-100 text-sm font-medium hover:text-brand-500 transition-colors">
             NEW ARRIVALS
