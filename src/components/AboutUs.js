@@ -76,7 +76,7 @@ const DimossAboutUs = () => {
                     >
                         <h1 className="text-4xl md:text-5xl font-serif font-bold text-brand-800 mb-4">About Dimoss</h1>
                         <p className="text-brand-600 text-lg max-w-2xl mx-auto">
-                            Crafting exquisite jewellery for life's most precious moments since 1197
+                            Crafting exquisite jewellery for life's most precious moments since 1997
                         </p>
                     </div>
                     <div
@@ -104,7 +104,7 @@ const DimossAboutUs = () => {
                                     </div>
                                     <h4 className="font-medium text-brand-800 mb-2">Our Location</h4>
                                     <address className="not-italic text-brand-600">
-                                        <p>Shop Number 845,</p>
+                                        <p>Shop Number 845</p>
                                         <p>Sarafa Bazar</p>
                                         <p>Karnal, Haryana, 132001</p>
                                         <p>India</p>
@@ -118,7 +118,6 @@ const DimossAboutUs = () => {
                                     <div className="text-brand-600">
                                         <p>Monday - Saturday</p>
                                         <p>10:00 AM - 8:00 PM</p>
-                                        <p>Sunday: 11:00 AM - 6:00 PM</p>
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center text-center p-5 bg-brand-50 rounded-lg border border-brand-100 transition-all duration-300 hover:shadow-md hover:border-brand-200 pulse-subtle">
@@ -199,7 +198,7 @@ const DimossAboutUs = () => {
                                 <div className="h-px bg-gradient-to-r from-transparent via-brand-200 to-transparent"></div>
                                 <div className="flex justify-center -mt-3">
                                     <span className="bg-white px-4 text-brand-500 italic font-serif">
-                                        Crafting memories since 1197
+                                        Crafting memories since 1997
                                     </span>
                                 </div>
                             </div>

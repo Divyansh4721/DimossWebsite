@@ -78,6 +78,13 @@ const DimossJewelleryCollections = () => {
             code: 'CH',
             image: null,
             customImage: '/assets/categories/chain.png'
+        },
+        {
+            id: 'tika',
+            name: 'Tika',
+            code: 'TIKA',
+            image: null,
+            customImage: '/assets/categories/Tika.png'
         }
     ]);
     const firstRender = useRef(true);

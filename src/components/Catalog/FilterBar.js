@@ -143,6 +143,7 @@ const FilterBar = ({ products, onProductSelect, dataLoaded }) => {
             case 'TOPS': return 'Tops';
             case 'SET': return 'Set';
             case 'CH': return 'Chain';
+            case 'TIKA': return 'Tika';
             default: return code;
         }
     };

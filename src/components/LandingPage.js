@@ -258,21 +258,21 @@ const DimossLandingPage = () => {
             {[
               {
                 title: 'Rings',
-                imagePath: '/assets/Ring.png',
+                imagePath: '/assets/categories/WomenRing.png',
                 alt: 'Elegant rings collection',
                 ornamentType: 'LR',
                 description: 'Timeless elegance for every occasion'
               },
               {
                 title: 'Bracelets',
-                imagePath: '/assets/Bracelets.png',
+                imagePath: '/assets/categories/Bracelets.png',
                 alt: 'Luxury bracelets collection',
                 ornamentType: 'BCLT',
                 description: 'Sophisticated designs for your wrist'
               },
               {
                 title: 'Kangan',
-                imagePath: '/assets/Kangan.png',
+                imagePath: '/assets/categories/Kangan.png',
                 alt: 'Traditional Kangan collection',
                 ornamentType: 'KADE',
                 description: 'Heritage pieces with modern touches'

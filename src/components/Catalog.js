@@ -18,7 +18,7 @@ const DimossJewelleryCatalog = () => {
     const getCategoryDisplayName = (code) => {
         switch (code) {
             case 'BCLT': return 'Bracelet';
-            case 'B.Earrings': return "Earrings";
+            case 'B.BALI': return "Earrings";
             case 'GR': return "Men's Ring";
             case 'KADE': return "Kangan";
             case 'LR': return "Women's Ring";
@@ -27,6 +27,7 @@ const DimossJewelleryCatalog = () => {
             case 'TOPS': return 'Tops';
             case 'SET': return 'Set';
             case 'CH': return 'Chain';
+            case 'TIKA': return 'Tika';
             default: return code;
         }
     };
