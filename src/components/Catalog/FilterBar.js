@@ -309,26 +309,28 @@ const FilterBar = ({ products, onProductSelect, dataLoaded }) => {
                                             <div className="p-4">
                                                 <div className="flex justify-between items-start mb-2">
                                                     <h3 className="text-lg font-medium text-brand-800">
-                                                        {product.prefix.name}-{product.index}
+                                                        {getCategoryDisplayName(product.ornament.name)}-{product.index}
                                                     </h3>
                                                     <span className="text-xs bg-brand-100 text-brand-800 px-2 py-1 rounded-full">
-                                                        {getCategoryDisplayName(product.ornament.name)}
+                                                        {product.prefix.name}
                                                     </span>
                                                 </div>
                                                 <div className="text-sm text-brand-600 space-y-1">
                                                     <div className="hidden sm:block">
-                                                        <p>Net Wt: {product.netWt}g {product.stoneWt > 0 && `| Stone Wt: ${product.stoneWt}g`}</p>
-                                                        <p>Gross Wt: {product.grossWt}g | {product.purity.name}K</p>
+                                                        <p>Net Wt: {product.netWt}g {product.stoneWt > 0 && `| St Wt: ${product.stoneWt}g`}</p>
+                                                        <p>Gross Wt: {product.grossWt}g</p>
                                                     </div>
                                                     <div className="sm:hidden space-y-1">
                                                         <p>Net Wt: {product.netWt}g</p>
                                                         <p>Gross Wt: {product.grossWt}g</p>
-                                                        {product.stoneWt > 0 && <p>Stone Wt: {product.stoneWt}g</p>}
-                                                        <p>Purity: {product.purity.name}K</p>
+                                                        {product.stoneWt > 0 && <p>St Wt: {product.stoneWt}g</p>}
                                                     </div>
                                                 </div>
-                                                <div className="mt-3">
+                                                <div className="flex justify-between items-start mt-3">
                                                     <p className="text-brand-800 font-bold">{formatPrice(product.sellingPrice)}</p>
+                                                    <span className="text-xs bg-brand-100 text-brand-800 px-2 py-1 rounded-full">
+                                                        {product.purity.name}K
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
