@@ -7,7 +7,7 @@ import Preloader from './Preloader';
 import DimossJewelleryNewArrivals from './components/NewArrivals';
 import DimossJewelleryCollections from './components/Collections';
 import './App.css';
-function AppContent() {
+function App() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   useEffect(() => {
@@ -23,7 +23,7 @@ function AppContent() {
     }
   }, [location.pathname]);
   return (
-    <>
+    <Router>
       {loading && <Preloader />}
       <Routes>
         <Route path="/" element={<DimossLandingPage />} />
@@ -32,13 +32,6 @@ function AppContent() {
         <Route path="/new-arrival" element={<DimossJewelleryNewArrivals />} />
         <Route path="/collections" element={<DimossJewelleryCollections />} />
       </Routes>
-    </>
-  );
-}
-function App() {
-  return (
-    <Router>
-      <AppContent />
     </Router>
   );
 }
