@@ -296,7 +296,7 @@ const FilterBar = ({ products, onProductSelect, dataLoaded }) => {
                                         >
                                             <div className="relative pt-[100%] bg-neutral-100 overflow-hidden">
                                                 <img
-                                                    src={`https://stock.divyanshbansal.com/uploads/${product.stockImage[0].fileName}`}
+                                                    src={`https://gcjewellers.autogenai.in/uploads/stock/${product.stockImage[0].fileName}`}
                                                     alt={`Jewellery item ${product.index}`}
                                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                                 />

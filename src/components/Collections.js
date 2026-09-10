@@ -92,7 +92,7 @@ const DimossJewelleryCollections = () => {
         async function fetchData() {
             try {
                 setIsLoading(true);
-                const response = await fetch('https://stock.divyanshbansal.com/dimoss-website');
+                const response = await fetch('https://gcjewellers.autogenai.in/dimoss-website');
                 const data = await response.json();
                 setProducts(data);
                 setIsLoading(false);
@@ -124,7 +124,7 @@ const DimossJewelleryCollections = () => {
                     const bestProduct = inStockProducts.length > 0 ? inStockProducts[0] : sortedProducts[0];
                     updatedCategories[index] = {
                         ...category,
-                        backupImage: `https://stock.divyanshbansal.com/uploads/${bestProduct.stockImage[0].fileName}`
+                        backupImage: `https://gcjewellers.autogenai.in/uploads/${bestProduct.stockImage[0].fileName}`
                     };
                 }
             });

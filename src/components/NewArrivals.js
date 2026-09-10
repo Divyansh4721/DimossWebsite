@@ -34,7 +34,7 @@ const DimossJewelleryNewArrivals = () => {
         async function fetchData() {
             try {
                 setIsLoading(true);
-                const response = await fetch('https://stock.divyanshbansal.com/dimoss-website');
+                const response = await fetch('https://gcjewellers.autogenai.in/dimoss-website');
                 const data = await response.json();
                 const inStockProducts = data.filter(product => product.isInStock);
                 const sortedProducts = [...inStockProducts].sort((a, b) => {
@@ -124,7 +124,7 @@ https://dimoss.in/products/${product.index}`;
                             >
                                 <div className="relative aspect-square overflow-hidden bg-white">
                                     <img
-                                        src={`https://stock.divyanshbansal.com/uploads/${product.stockImage[0]?.fileName}`}
+                                        src={`https://gcjewellers.autogenai.in/uploads/${product.stockImage[0]?.fileName}`}
                                         alt={`Jewellery item ${product.index}`}
                                         className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                                     />
@@ -166,7 +166,7 @@ https://dimoss.in/products/${product.index}`;
                                 <div className="relative bg-white rounded-lg overflow-hidden border border-brand-100 shadow-sm">
                                     <div className="relative aspect-square overflow-hidden">
                                         <img
-                                            src={`https://stock.divyanshbansal.com/uploads/${selectedProduct.stockImage[selectedImageIndex]?.fileName}`}
+                                            src={`https://gcjewellers.autogenai.in/uploads/${selectedProduct.stockImage[selectedImageIndex]?.fileName}`}
                                             alt={`Jewellery item ${selectedProduct.index}`}
                                             className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                                         />
@@ -181,7 +181,7 @@ https://dimoss.in/products/${product.index}`;
                                                 ${idx === selectedImageIndex ? 'border-brand-500 shadow-sm' : 'border-transparent hover:border-brand-300'}`}
                                         >
                                             <img
-                                                src={`https://stock.divyanshbansal.com/uploads/${item.fileName}`}
+                                                src={`https://gcjewellers.autogenai.in/uploads/${item.fileName}`}
                                                 alt={`Jewellery item ${selectedProduct.index} view ${idx + 1}`}
                                                 className="w-full h-full object-cover"
                                             />

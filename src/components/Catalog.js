@@ -35,7 +35,7 @@ const DimossJewelleryCatalog = () => {
         async function fetchData() {
             try {
                 setLoading(true);
-                const response = await fetch('https://stock.divyanshbansal.com/dimoss-website');
+                const response = await fetch('https://gcjewellers.autogenai.in/dimoss-website');
                 const data = await response.json();
                 setProducts(data);
                 setLoading(false);
@@ -145,7 +145,7 @@ https://dimoss.in/catalog?product=${product.index}`;
                                 <div className="relative bg-white rounded-lg overflow-hidden border border-brand-100 shadow-sm">
                                     <div className="relative aspect-square overflow-hidden">
                                         <img
-                                            src={`https://stock.divyanshbansal.com/uploads/${selectedProduct.stockImage[selectedImageIndex].fileName}`}
+                                            src={`https://gcjewellers.autogenai.in/uploads/${selectedProduct.stockImage[selectedImageIndex].fileName}`}
                                             alt={`Jewellery item ${selectedProduct.index}`}
                                             className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                                         />
@@ -167,7 +167,7 @@ https://dimoss.in/catalog?product=${product.index}`;
                                                 ${idx === selectedImageIndex ? 'border-brand-500 shadow-sm' : 'border-transparent hover:border-brand-300'}`}
                                         >
                                             <img
-                                                src={`https://stock.divyanshbansal.com/uploads/${item.fileName}`}
+                                                src={`https://gcjewellers.autogenai.in/uploads/${item.fileName}`}
                                                 alt={`Jewellery item ${selectedProduct.index} view ${idx + 1}`}
                                                 className="w-full h-full object-cover"
                                             />
